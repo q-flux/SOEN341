@@ -10,8 +10,11 @@ QuickFlux is a twitter like social networking services where users can share new
 *  Reply to a tweet
 *  Follow a user
 
-# Authors
+# Contributing
 
+I am dedicating this message to everyone, including the authors of the project. If you have any idea about anything, don't feel shy to  raise an issue. Let's work on it as a team, motivating each other to get this done on time. 
+
+# Authors
 
 * **Dong Jae Kim** - *Initial work*
 * **Ali Nasiri Pour** - *Initial work*
@@ -23,5 +26,10 @@ QuickFlux is a twitter like social networking services where users can share new
 * **Sourabh Rajeev Badagandi** - *Initial work*
 * **Vinita Singh** - *Initial work*
 * **Amit Kumar Dey** - *Initial work*
+
+# Project status
+
+Currently, we are creating a user story for the project and breaking  it down to individual tasks. The documentation will be found in milestone "sprint 1"
+
 
 
