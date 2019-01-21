@@ -1,6 +1,10 @@
-# QuickFlux
+# Objective 
 
-QuickFlux is a twitter like social networking services where users can share news and interact by sharing messages. It has 5 core functionalities that solves the purpose of simple interaction without bombarding users with advertisements.
+Develop a twitter like social networking services where users can interact with one another by sharing messages 
+
+# Project
+
+Twitter is one of the world's most popular social media platform. Today, many businsses are using twitter to reach wider audience and expand their influence. This web application is a variation of a twitter like web application where users are able to have rapid communciation with one another by sharing and liking posts. However, we want to put our own twist to the application by directing users to dedicate their posts about technology. Namely, intereting books or articles that might be useful to read as software developers or  things that they learned through hacking X. We want this application to  encourage open source concept  of  sharing  and helping one another to learn and become a better software developers.
 
 # Features
 
