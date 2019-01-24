@@ -14,6 +14,11 @@ Twitter is one of the world's most popular social media platform. Today, many bu
 *  Reply to a tweet
 *  Follow a user
 
+# Technology
+
+* MySQL/PHP - Backend
+* Javascript/HTML/CSS  Frontend
+
 # Contributing
 
 I am dedicating this message to everyone, including the authors of the project. If you have any idea about anything, don't feel shy to  raise an issue. Let's work on it as a team, motivating each other to get this done on time. 
@@ -33,7 +38,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 
 # Project status
 
-Currently, we are creating a user story for the project and breaking  it down to individual tasks. The documentation will be found in milestone "sprint 1"
+Currently, we are creating a user story for the project and breaking  it down to individual tasks. The documentation of the meeting will be found under WIKI. 
 
 
 
