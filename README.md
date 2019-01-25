@@ -31,7 +31,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 * **Ali Nasiri Pour** - *Initial work*
 * **Jake Dos Santos** - *Initial work*
 * **Kasra Laamerad** - *Initial work*
-* **KoteswaraRao Kothamasu** - *Initial work*
+* **KoteswaraRao Kothamasu** - Koteswararao Kothamasu (rao.kothamasu@ymail.com) 
 * **Sai Charan Duduka** - saicharanduduka (charan140494@gmail.com)
 * **Samuel Beaubien** - *Initial work*
 * **Sourabh Rajeev Badagandi** - sourabh-rb (sourabh.rajeev@gmail.com)
