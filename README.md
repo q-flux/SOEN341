@@ -38,7 +38,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 
 # Project status
 
-Currently, we are creating a user story for the project and breaking  it down to individual tasks. The documentation of the meeting will be found under WIKI. 
+Currently, we are creating a user story for the project and breaking  it down to individual tasks!
 
 
 
