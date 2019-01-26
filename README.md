@@ -29,7 +29,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 # Authors ( Github username and email )
 
 * **Dong Jae Kim** - djaekim (djaekim086@gmail.com)
-* **Ali Nasiri Pour** - *Initial work*
+* **Ali Nasiri Pour** - Ali Nasiri pour(ali.npour7@gmail.com)
 * **Jake Dos Santos** - *Initial work*
 * **Kasra Laamerad** - *Initial work*
 * **KoteswaraRao Kothamasu** - *Initial work*
