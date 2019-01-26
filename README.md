@@ -1,5 +1,6 @@
 # Objective
 
+
 Develop a twitter like social networking services where users can interact with one another by sharing messages 
 
 # Project
@@ -25,9 +26,9 @@ Twitter is one of the world's most popular social media platform. Today, many bu
 
 I am dedicating this message to everyone, including the authors of the project. If you have any idea about anything, don't feel shy to  raise an issue. Let's work on it as a team, motivating each other to get this done on time. 
 
-# Authors
+# Authors (Github username and email)
 
-* **Dong Jae Kim** - *Initial work*
+* **Dong Jae Kim** - djaekim (djaekim086@gmail.com)
 * **Ali Nasiri Pour** - *Initial work*
 * **Jake Dos Santos** - *Initial work*
 * **Kasra Laamerad** - *Initial work*
