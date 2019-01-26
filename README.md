@@ -16,8 +16,10 @@ Twitter is one of the world's most popular social media platform. Today, many bu
 
 # Technology
 
+* Laravel 5.7
 * MySQL/PHP - Backend
 * Javascript/HTML/CSS  Frontend
+
 
 # Contributing
 
@@ -30,9 +32,9 @@ I am dedicating this message to everyone, including the authors of the project. 
 * **Jake Dos Santos** - *Initial work*
 * **Kasra Laamerad** - *Initial work*
 * **KoteswaraRao Kothamasu** - *Initial work*
-* **Sai Charan Duduka** - *Initial work*
+* **Sai Charan Duduka** - saicharanduduka (charan140494@gmail.com)
 * **Samuel Beaubien** - *Initial work*
-* **Sourabh Rajeev Badagandi** - *Initial work*
+* **Sourabh Rajeev Badagandi** - sourabh-rb (sourabh.rajeev@gmail.com)
 * **Vinita Singh** - *Initial work*
 * **Amit Kumar Dey** - *Initial work*
 
