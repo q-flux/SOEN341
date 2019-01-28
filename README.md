@@ -37,7 +37,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 * **Samuel Beaubien** - *Initial work*
 * **Sourabh Rajeev Badagandi** - sourabh-rb (sourabh.rajeev@gmail.com)
 * **Vinita Singh** - Vinita1319 (vinita.singh1319@gmail.com)
-* **Amit Kumar Dey** - *Initial work*
+
 
 # Project status
 
