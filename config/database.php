@@ -95,10 +95,10 @@ return [
             'strict' => true,
             'engine' => null,
         ],
-        // 'testing' => [
-        //     'driver' => env('mysql')
-        //     // more details on your testing database
-        // ]
+        'testing' => [
+            'driver' => env('mysql')
+            // more details on your testing database
+        ]
 
         
 
