@@ -5,9 +5,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-           
+
                <img src="" alt=".." class="img-thumbnail">
-           
+
         </div>
         <div class="col-md-8">
         @include('common.errors')
@@ -29,11 +29,13 @@
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Tweet
                     </button>
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Like
+                    </button>
                 </div>
-            </div>
         </form>
-           
-               
+
+
 
         @if (count($tweets) > 0)
         <div class="panel panel-default">
@@ -56,7 +58,7 @@
                             <thead>
                                 <th>{{$tweet->time_posted}}</th>
                                 <th>&nbsp;</th>
-                            </thead> 
+                            </thead>
                             <tr>
                                 <!-- Task Name -->
                                 <td class="table-text">
@@ -73,9 +75,9 @@
             </div>
         </div>
     @endif
-    
+
         </div>
-       
+
 
     </div>
 </div>
