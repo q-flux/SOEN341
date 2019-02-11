@@ -1,41 +1,24 @@
-dist: xenial
+os:
+  - windows
+
 language: php
 
-env:
-  global:
-    - setup=stable
-
-matrix:
-  fast_finish: true
-  include:
-    - php: 7.1
-    - php: 7.1
-      env: setup=lowest
-    - php: 7.2
-    - php: 7.2
-      env: setup=lowest
-    - php: 7.3
-    - php: 7.3
-      env: setup=lowest
-
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-services:
-  - memcached
-  - redis-server
-  - mysql
-
-before_install:
-  - phpenv config-rm xdebug.ini || true
-  - echo "extension = memcached.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - printf "\n" | pecl install -f redis
-  - travis_retry composer self-update
-  - mysql -e 'CREATE DATABASE forge;'
-
-install:
-  - if [[ $setup = 'stable' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-stable --no-suggest; fi
-  - if [[ $setup = 'lowest' ]]; then travis_retry composer update --prefer-dist --no-interaction --prefer-lowest --prefer-stable --no-suggest; fi
-
-script: vendor/bin/phpunit
+php:
+  - '7.3.1'
+  
+before_script:
+  - composer self-update
+  - composer install --no-interaction
+  - cp .env.travis .env
+  - pear install pear/PHP_CodeSniffer
+  - phpenv rehash
+  - nvm install 7.7.1
+  - npm install npm@latest -g
+  - npm install -g jshint
+  - npm install
+  
+script:
+  - vendor/bin/phpunit --coverage-text
+  - phpcs --ignore=app/Http/Controllers/Auth,app/Http/Controllers/Controller.php app/Http/Controllers
+  - npm run production
+  - jshint resources/assets/js/modules/*
