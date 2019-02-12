@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-8">
         @include('common.errors')
-        <form action="/tweet" method="POST" class="form-horizontal">
+        <form method="POST" action = "{{ route('create')}}"class="form-horizontal">
             {{ csrf_field() }}
 
             <!-- Tweet Name -->
@@ -19,8 +19,24 @@
                 <label for="tweet" class="col-sm-3 control-label">What's happening?</label>
 
                 <div class="col-sm-12">
-                    <input type="text" name="tweet" id="tweet-name" class="form-control">
+                    <input type="text" onkeyup="countCharacters();" name="tweet" id="tweet-name" class="form-control" maxlength="140">
+                    <span id="chars">140</span> /140
                 </div>
+                <div class="col-sm-12">
+                </div>
+                <script>
+                var el;
+
+                function countCharacters() {
+                  var textEntered, countRemaining, counter;
+                  textEntered = document.getElementById('tweet-name').value;
+                  counter = (140 - (textEntered.length));
+                  countRemaining = document.getElementById('chars');
+                  countRemaining.textContent = counter;
+                }
+                el = document.getElementById('tweet-name');
+                el.addEventListener('keyup', countCharacters, false);
+                </script>
             </div>
 
             <!-- Add Tweet Button -->
