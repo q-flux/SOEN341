@@ -29,31 +29,11 @@ Auth::routes();
 //     return view('home', [
 //         'tweets' => $tweets
 //     ]);
-    
+
 // });
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::post('/tweet', function (Request $request) {
-    // $validator = Validator::make($request->all(), [
-    //     'tweet' => 'required|max:255',
-    // ]);
-
-    // if ($validator->fails()) {
-    //     return redirect('/home')
-    //         ->withInput()
-    //         ->withErrors($validator);
-    // }
-
-    // Create The Tweet...
-    $tweet = new Tweets;
-    $tweet->user_id = Auth::user()->id;
-    $tweet->tweet_text = $request->tweet;
-
-    $tweet->save();
-
-    return redirect('/home');
-});
+Route::post('/tweet', 'HomeController@create')->name('create');
 Route::delete('/home/{id}', function ($id) {
     //
 });
