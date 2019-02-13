@@ -1,7 +1,7 @@
 # Objective
+Develop a twitter like social networking services where users can interact with one another by sharing messages.
 
-
-Develop a twitter like social networking services where users can interact with one another by sharing messages 
+[![Build Status](https://travis-ci.com/q-flux/SOEN341.svg?branch=master)](https://travis-ci.com/q-flux/SOEN341)
 
 # Project
 
