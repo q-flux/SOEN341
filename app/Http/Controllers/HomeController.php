@@ -43,7 +43,6 @@ class HomeController extends Controller
 
         return view('home', ['tweets' => $tweets]);
     }
-
     public function create(Request $request)
     {
       if($request->input('tweet'))
@@ -56,5 +55,4 @@ class HomeController extends Controller
       }
         return redirect()->back();
     }
-
 }
