@@ -34,7 +34,7 @@ I am dedicating this message to everyone, including the authors of the project. 
 * **Kasra Laamerad** - *Initial work*
 * **KoteswaraRao Kothamasu** - koti-github (rao.kothamasu@ymail.com)
 * **Sai Charan Duduka** - saicharanduduka (charan140494@gmail.com)
-* **Samuel Beaubien** - *Initial work*
+* **Samuel Beaubien** - samuelbeaubien (samuel.beaubien@gmail.com)
 * **Sourabh Rajeev Badagandi** - sourabh-rb (sourabh.rajeev@gmail.com)
 * **Vinita Singh** - Vinita1319 (vinita.singh1319@gmail.com)
 
