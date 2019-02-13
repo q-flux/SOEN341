@@ -18,11 +18,58 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-    body{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+// this is for search bar functionality
+    $(document).on('keyup', '#search',function() {
+            $value = $(this).val();
+            if($value != ""){
+                $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+                });
+                $.ajax({
+                    type: 'GET',
+                    dataType : 'json', 
+                    url: '{{URL('search')}}',
+                    data: {
+                        'search': $value
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $('#table tbody').html(data);
+                    }
+                });
+            }
+        })
+        // clears the search when user clicks on the document
+        $(document).click(function(){
+            $('#table tbody').html('');
+
+        })
+        $(document).on('click', '#table td',function() {
+            // console.log($(this).attr('id'));
+
+            //TO DO - when user clicks on search result to take you to their page
+            
+        });
+       
         
-    }
+    </script>
+    <style>
+   #table{
+    position: fixed;
+    background-color: white;
+    z-index: 99;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+   }
+   #table tbody tr:hover{
+       background-color: #f7f7f7;
+       cursor:pointer;
+   }
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -55,6 +102,15 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                             <input type="text" class="form-controller" id="search" name="search">
+
+                                <table id="table">
+                                  <tbody>
+                                  </tbody>
+                                </table>
+                               
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -82,5 +138,6 @@
             @yield('content')
         </main>
     </div>
+    
 </body>
 </html>
