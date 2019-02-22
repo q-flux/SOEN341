@@ -18,6 +18,8 @@ class CreateTweetsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('tweet_text');
             $table->timestamp('time_posted');
+            $table->bigInteger('like_cnt');
+            $table->bigInteger('reply_cnt');
         });
     }
 

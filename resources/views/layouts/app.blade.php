@@ -37,7 +37,7 @@
                         'search': $value
                     },
                     success: function(data) {
-                        console.log(data);
+                        // console.log(data);
                         $('#table tbody').html(data);
                     }
                 });
@@ -54,6 +54,52 @@
             //TO DO - when user clicks on search result to take you to their page
             
         });
+        // $(document).on('click', '.search',function() {
+        //     $value = this.getAttribute('data-userID');
+        //      $.ajaxSetup({
+        //           headers: {
+        //               'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        //           }
+        //         });
+        //         $.ajax({
+        //             type: 'GET',
+        //             dataType : 'json', 
+        //             url: '{{URL('otherUser')}}',
+        //             data: {
+        //                 'id': $value
+        //             },
+        //             success: function(data) {
+                       
+        //             }
+        //         });
+        // });
+        $(document).on('click', '#like',function() {
+                $value = this.getAttribute('data-tweetID');
+                $ref = this;
+                // console.log($value);
+                $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+                });
+                $.ajax({
+                    type: 'GET',
+                    dataType : 'json', 
+                    url: '{{URL('like')}}',
+                    data: {
+                        'id': $value
+                    },
+                    success: function(data) {
+                        $cntArray = data[0];    
+                        $cnt = $cntArray[0].like_cnt;
+                        $id = data[1];
+                        $("[data-tweetid="+$id+"]").html($cnt + " Like");
+                    }
+                });
+            
+        
+        });
+        
        
         
     </script>
@@ -67,6 +113,9 @@
    #table tbody tr:hover{
        background-color: #f7f7f7;
        cursor:pointer;
+   }
+   .btn{
+       background-color:#e9e9e9 !important;
    }
     </style>
 
@@ -119,8 +168,17 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('profile-form').submit();">
+                                        {{ __('Profile') }}
+                                    </a>
+                                    
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                    <form id="profile-form" action="{{ route('home') }}" method="GET">
                                         @csrf
                                     </form>
                                 </div>
