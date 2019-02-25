@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+  
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -19,85 +19,30 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/ajax.js"></script>
+   
     <script>
 // this is for search bar functionality
-    $(document).on('keyup', '#search',function() {
+        $(document).on('keyup', '#search',function() {
             $value = $(this).val();
-            if($value != ""){
-                $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                  }
-                });
-                $.ajax({
-                    type: 'GET',
-                    dataType : 'json', 
-                    url: '{{URL('search')}}',
-                    data: {
-                        'search': $value
-                    },
-                    success: function(data) {
-                        // console.log(data);
-                        $('#table tbody').html(data);
-                    }
-                });
-            }
+            $search  = '{{URL('search')}}';
+            setRequest($search,$value).done(function(data){
+                $('#table tbody').html(data);
+            })
         })
-        // clears the search when user clicks on the document
+        
         $(document).click(function(){
             $('#table tbody').html('');
-
         })
-        $(document).on('click', '#table td',function() {
-            // console.log($(this).attr('id'));
-
-            //TO DO - when user clicks on search result to take you to their page
-            
-        });
-        // $(document).on('click', '.search',function() {
-        //     $value = this.getAttribute('data-userID');
-        //      $.ajaxSetup({
-        //           headers: {
-        //               'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        //           }
-        //         });
-        //         $.ajax({
-        //             type: 'GET',
-        //             dataType : 'json', 
-        //             url: '{{URL('otherUser')}}',
-        //             data: {
-        //                 'id': $value
-        //             },
-        //             success: function(data) {
-                       
-        //             }
-        //         });
-        // });
         $(document).on('click', '#like',function() {
                 $value = this.getAttribute('data-tweetID');
-                $ref = this;
-                // console.log($value);
-                $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                  }
-                });
-                $.ajax({
-                    type: 'GET',
-                    dataType : 'json', 
-                    url: '{{URL('like')}}',
-                    data: {
-                        'id': $value
-                    },
-                    success: function(data) {
-                        $cntArray = data[0];    
-                        $cnt = $cntArray[0].like_cnt;
-                        $id = data[1];
-                        $("[data-tweetid="+$id+"]").html($cnt + " Like");
-                    }
-                });
-            
-        
+                $search  = '{{URL('like')}}';
+                setRequest($search,$value).done(function(data){
+                    $cntArray = data[0];    
+                    $cnt = $cntArray[0].like_cnt;
+                    $id = data[1];
+                    $("[data-tweetid="+$id+"]").html($cnt + " Like");
+                })
         });
         
        

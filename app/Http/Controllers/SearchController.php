@@ -12,7 +12,7 @@ class SearchController extends Controller
             $output = "";
             // $users = User::all(); // this gets everything 
             // $users = User::select('name')->get(); // this gets users column
-            $users = User::where('name', 'LIKE', '%'.$request->search."%")->get();
+            $users = User::where('name', 'LIKE', '%'.$request->data."%")->get();
 
             if ($users){
                 foreach($users as $key => $user){
