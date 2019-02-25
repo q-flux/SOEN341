@@ -40,7 +40,6 @@ class HomeController extends Controller
         // $dates = $this->getDate($tweets);
         return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
     }
-
     public function create(Request $request)
     {
       if($request->input('tweet'))
