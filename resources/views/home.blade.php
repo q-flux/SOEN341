@@ -1,7 +1,9 @@
 
 @extends('layouts.app')
 
+
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -45,10 +47,8 @@
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Tweet
                     </button>
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> Like
-                    </button>
                 </div>
+            </div>
         </form>
 
 
@@ -62,13 +62,6 @@
             <div class="panel-body">
                 <table class="table table-striped task-table">
 
-                    <!-- Table Headings
-                    <thead>
-                        <th>Date</th>
-                        <th>&nbsp;</th>
-                    </thead> -->
-
-                    <!-- Table Body -->
                     <tbody>
                         @foreach ($tweets as $tweet)
                             <thead>
@@ -80,9 +73,18 @@
                                 <td class="table-text">
                                     <div>{{ $tweet->tweet_text }}</div>
                                 </td>
-
+                               
                                 <td>
                                     <!-- TODO: Delete Button -->
+                                </td>
+                        
+                            </tr>
+                            <tr>
+                                <td>
+                                <button id="like" type="submit" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
+                                            {{ $tweet->like_cnt }} Like
+                                </button>
+                              
                                 </td>
                             </tr>
                         @endforeach
