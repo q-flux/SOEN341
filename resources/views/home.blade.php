@@ -48,6 +48,7 @@
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Like
                     </button>
+                    <button type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
                 </div>
         </form>
 

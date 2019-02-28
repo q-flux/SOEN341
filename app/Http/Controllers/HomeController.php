@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use \Datetime;
 
 use App\Tweets;
+use App\feed;
+use DB;
 
 class HomeController extends Controller
 {
@@ -54,5 +56,14 @@ class HomeController extends Controller
         $tweet->save();
       }
         return redirect()->back();
+    }
+    public function feed()
+    {
+
+      $user = Auth::user()->id;
+      $f_id = feed::where('id', $user)->get();
+      $tweets = DB::table('Tweets')->whereIn('user_id',  $f_id)->get();
+      return view('feed', ['tweets' => $tweets]);
+
     }
 }
