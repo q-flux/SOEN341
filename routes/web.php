@@ -20,20 +20,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/search','SearchController@search');
+Route::get('/searchOther','OtherUser@searchOther');
 
-// Route::get('/home', function(Request $request){
-//     // $tweets = Tweets::where("user_id", Auth::user()->id)->get();
-//     // return $tweets;
-
-//     $tweets = Tweets::orderBy('time_posted', 'asc')->get();
-//     return view('home', [
-//         'tweets' => $tweets
-//     ]);
-
-// });
-
+Route::get('/like', 'LikeController@LikeTweet');
+// Route::get('search');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
-Route::delete('/home/{id}', function ($id) {
-    //
-});
+// Route::delete('/home/{id}', function ($id) {
+
+// });

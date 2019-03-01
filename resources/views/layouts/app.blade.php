@@ -11,18 +11,59 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+  
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <style>
-    body{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/ajax.js"></script>
+   
+    <script>
+// this is for search bar functionality
+        $(document).on('keyup', '#search',function() {
+            $value = $(this).val();
+            $search  = '{{URL('search')}}';
+            setRequest($search,$value).done(function(data){
+                $('#table tbody').html(data);
+            })
+        })
         
-    }
+        $(document).click(function(){
+            $('#table tbody').html('');
+        })
+        $(document).on('click', '#like',function() {
+                $value = this.getAttribute('data-tweetID');
+                $search  = '{{URL('like')}}';
+                setRequest($search,$value).done(function(data){
+                    $cntArray = data[0];        
+                    $cnt = $cntArray[0].like_cnt;
+                    $id = data[1];
+                    $("[data-tweetid="+$id+"]").html($cnt + " Like");
+                })
+        });
+        
+       
+        
+    </script>
+    <style>
+   #table{
+    position: fixed;
+    background-color: white;
+    z-index: 99;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+   }
+   #table tbody tr:hover{
+       background-color: #f7f7f7;
+       cursor:pointer;
+   }
+   .btn{
+       background-color:#e9e9e9 !important;
+   }
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -55,6 +96,15 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                             <input type="text" class="form-controller" id="search" name="search">
+
+                                <table id="table">
+                                  <tbody>
+                                  </tbody>
+                                </table>
+                               
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -66,8 +116,17 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('profile-form').submit();">
+                                        {{ __('Profile') }}
+                                    </a>
+                                    
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                    </form>
+                                    <form id="profile-form" action="{{ route('home') }}" method="GET">
                                         @csrf
                                     </form>
                                 </div>
@@ -82,5 +141,6 @@
             @yield('content')
         </main>
     </div>
+    
 </body>
 </html>
