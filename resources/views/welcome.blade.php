@@ -11,6 +11,7 @@
 
         <!-- Styles -->
         <style>
+        
             html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -18,6 +19,10 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                background-color: #000000;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23222222' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23444444' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23666666' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23888888' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaaaaa' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cccccc' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+                background-attachment: fixed;
+                background-size: cover; 
             }
 
             .full-height {
@@ -61,6 +66,9 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .color-white{
+                color:white !important;
+            }
         </style>
     </head>
     <body>
@@ -70,21 +78,21 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a class="color-white" href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a  class="color-white" href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
+            <div class="content color-white">
                 <div class="title m-b-md">
                     Flux
                 </div>
                 <p>
-                where networking made easier</p>
+                networking made easier</p>
             </div>
         </div>
     </body>
