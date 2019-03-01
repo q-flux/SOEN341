@@ -35,13 +35,10 @@ class HomeController extends Controller
     }
     public function index()
     {
-
         $user = Auth::user()->id;
         $tweets = Tweets::where("user_id", $user)->get();
-
         // $dates = $this->getDate($tweets);
-
-        return view('home', ['tweets' => $tweets]);
+        return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
     }
     public function create(Request $request)
     {
@@ -49,10 +46,12 @@ class HomeController extends Controller
       {
         $tweet = new Tweets;
         $tweet->user_id = Auth::user()->id;
+        $tweet->like_cnt = 0;
+        $tweet->reply_cnt = 0;
         $tweet->tweet_text = $request->input('tweet');
 
         $tweet->save();
-      }
+      } 
         return redirect()->back();
     }
 }
