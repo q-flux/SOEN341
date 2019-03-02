@@ -51,7 +51,14 @@ class HomeController extends Controller
         $tweet->tweet_text = $request->input('tweet');
 
         $tweet->save();
-      } 
+      }
         return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+      $tweet = Tweets::find($id);
+      $tweet->delete();
+      return redirect()->back();
     }
 }
