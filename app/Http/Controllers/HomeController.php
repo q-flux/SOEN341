@@ -8,6 +8,7 @@ use \Datetime;
 
 use App\Tweets;
 use App\feed;
+use App\users;
 use DB;
 
 class HomeController extends Controller
@@ -61,9 +62,14 @@ class HomeController extends Controller
     {
 
       $user = Auth::user()->id;
-      $f_id = feed::where('id', $user)->get();
-      $tweets = DB::table('Tweets')->whereIn('user_id',  $f_id)->get();
-      return view('feed', ['tweets' => $tweets]);
-
-    }
+     $f_id = feed::where('id', $user)->get();
+     $array = array();
+     foreach ($f_id as $value) {
+       array_push($array, $value->follow_id);
+     }
+     $tweets  = Tweets::whereIn('user_id',$array)->get();
+     $names = users::whereIn('id',$array)->get();
+     echo $f_id;
+    return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
+   }
 }
