@@ -46,11 +46,11 @@ class HomeController extends Controller
             'user_id' => Auth::user()->id,
             'like_cnt' => 0,
             'reply_cnt' => 0,
-            'tweet_text' => $request->get('tweet'),
+            'tweet_text' => $request->input('tweet'),
             'time_posted' => now(),
         ]);
             return redirect('/home');
-    }
+    }   
 
     public function delete($id)
     {

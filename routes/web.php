@@ -26,7 +26,7 @@ Route::get('/searchOther','OtherUser@searchOther');
 Route::get('/like', 'LikeController@LikeTweet');
 // Route::get('search');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/create', 'HomeController@create');
+Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
 
 // Route::delete('/home/{id}', function ($id) {
