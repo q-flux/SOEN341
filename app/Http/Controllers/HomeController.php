@@ -42,14 +42,20 @@ class HomeController extends Controller
     }
     public function create(Request $request)
     {
+        $tweet = Tweets::create([
+            'user_id' => Auth::user()->id,
+            'like_cnt' => 0,
+            'reply_cnt' => 0,
+            'tweet_text' => $request->get('tweet'),
+            'time_posted' => now(),
+        ]);
+            return redirect('/home');
+    }
 
-    $tweet = Tweets::create([
-        'user_id' => Auth::user()->id,
-        'like_cnt' => 0,
-        'reply_cnt' => 0,
-        'tweet_text' => $request->get('tweet'),
-        'time_posted' => now(),
-    ]);
-        return redirect('/home');
+    public function delete($id)
+    {
+      $tweet = Tweets::find($id);
+      $tweet->delete();
+      return redirect()->back();
     }
 }

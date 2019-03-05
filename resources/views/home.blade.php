@@ -73,18 +73,21 @@
                                 <td class="table-text">
                                     <div>{{ $tweet->tweet_text }}</div>
                                 </td>
-                               
+
                                 <td>
-                                    <!-- TODO: Delete Button -->
+                                  <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">Delete</button>
+                                  </form>
                                 </td>
-                        
+
                             </tr>
                             <tr>
                                 <td>
                                 <button id="like" type="submit" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
                                             {{ $tweet->like_cnt }} Like
                                 </button>
-                              
+
                                 </td>
                             </tr>
                         @endforeach
