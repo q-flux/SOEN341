@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8">
         @include('common.errors')
-        <form method="POST" action = "{{ route('create')}}"class="form-horizontal">
+        <form method="POST" action = "/create" class="form-horizontal">
             {{ csrf_field() }}
 
             <!-- Tweet Name -->

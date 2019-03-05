@@ -16,7 +16,7 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('user_id');
-            $table->string('tweet_text');
+            $table->longText('tweet_text');
             $table->timestamp('time_posted');
             $table->bigInteger('like_cnt');
             $table->bigInteger('reply_cnt');

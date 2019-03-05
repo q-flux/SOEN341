@@ -36,6 +36,7 @@
         })
         $(document).on('click', '#like',function() {
                 $value = this.getAttribute('data-tweetID');
+                console.log($value);
                 $search  = '{{URL('like')}}';
                 setRequest($search,$value).done(function(data){
                     $cntArray = data[0];        
