@@ -38,25 +38,28 @@ class HomeController extends Controller
     }
     public function index()
     {
-
         $user = Auth::user()->id;
         $tweets = Tweets::where("user_id", $user)->get();
-
         // $dates = $this->getDate($tweets);
-
-        return view('home', ['tweets' => $tweets]);
+        return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
     }
     public function create(Request $request)
     {
-      if($request->input('tweet'))
-      {
-        $tweet = new Tweets;
-        $tweet->user_id = Auth::user()->id;
-        $tweet->tweet_text = $request->input('tweet');
+        $tweet = Tweets::create([
+            'user_id' => Auth::user()->id,
+            'like_cnt' => 0,
+            'reply_cnt' => 0,
+            'tweet_text' => $request->input('tweet'),
+            'time_posted' => now(),
+        ]);
+            return redirect('/home');
+    }   
 
-        $tweet->save();
-      }
-        return redirect()->back();
+    public function delete($id)
+    {
+      $tweet = Tweets::find($id);
+      $tweet->delete();
+      return redirect()->back();
     }
     public function feed()
     {
