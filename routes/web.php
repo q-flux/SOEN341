@@ -28,6 +28,9 @@ Route::get('/like', 'LikeController@LikeTweet');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
+/*Route::post('/like', [
+    'uses' => 'TweetController@LikeTweet',
+  'as' => 'like'
+]);*/
 
 // Route::delete('/home/{id}', function ($id) {
-
