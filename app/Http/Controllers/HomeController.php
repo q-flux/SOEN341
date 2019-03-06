@@ -53,7 +53,7 @@ class HomeController extends Controller
             'time_posted' => now(),
         ]);
             return redirect('/home');
-    }   
+    }
 
     public function delete($id)
     {
@@ -72,7 +72,6 @@ class HomeController extends Controller
      }
      $tweets  = Tweets::whereIn('user_id',$array)->get();
      $names = users::whereIn('id',$array)->get();
-     echo $f_id;
     return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
    }
 }
