@@ -13,7 +13,7 @@
         </div>
         <div class="col-md-8">
         @include('common.errors')
-        <form method="POST" action = "{{ route('create')}}"class="form-horizontal">
+        <form method="POST" action = "{{ route('create')}}" class="form-horizontal">
             {{ csrf_field() }}
 
             <!-- Tweet Name -->
@@ -47,6 +47,12 @@
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Tweet
                     </button>
+
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i> Like
+                    </button>
+                    <button type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
+
                 </div>
             </div>
         </form>
@@ -73,18 +79,21 @@
                                 <td class="table-text">
                                     <div>{{ $tweet->tweet_text }}</div>
                                 </td>
-                               
+
                                 <td>
-                                    <!-- TODO: Delete Button -->
+                                  <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default">Delete</button>
+                                  </form>
                                 </td>
-                        
+
                             </tr>
                             <tr>
                                 <td>
                                 <button id="like" type="submit" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
                                             {{ $tweet->like_cnt }} Like
                                 </button>
-                              
+
                                 </td>
                             </tr>
                         @endforeach
