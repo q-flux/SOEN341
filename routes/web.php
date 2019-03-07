@@ -25,14 +25,15 @@ Route::get('/', function () {
 Route::get('/feed','HomeController@feed');
 Auth::routes();
 Route::get('/search','SearchController@search');
-Route::get('/searchOther','OtherUser@searchOther');
+Route::get('/searchOther/{id}','OtherUserController@searchOther');
 
-Route::get('/like', 'LikeController@LikeTweet');
+Route::get('/like/{id}', 'LikeController@LikeTweet');
 // Route::get('search');
 //Route::get('/home','HomeController@feed')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
+Route::get('/follow/{id}', 'FollowController@Follow');
 /*Route::post('/like', [
     'uses' => 'TweetController@LikeTweet',
   'as' => 'like'

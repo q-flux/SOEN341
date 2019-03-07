@@ -11,10 +11,13 @@
                <img src="" alt=".." class="img-thumbnail">
 
         </div>
+   
         <div class="col-md-8">
+        
         @include('common.errors')
+        {{-- @if ($id) --}}
         <form method="POST" action = "{{ route('create')}}" class="form-horizontal">
-            {{ csrf_field() }}
+            {{ csrf_field() }} 
 
             <!-- Tweet Name -->
             <div class="form-group">
@@ -47,15 +50,12 @@
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Tweet
                     </button>
-
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-plus"></i> Like
-                    </button>
+                   
                     <button type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
-
                 </div>
             </div>
         </form>
+        {{-- @endif --}}
 
 
 
@@ -89,11 +89,9 @@
 
                             </tr>
                             <tr>
-                                <td>
-                                <button id="like" type="submit" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
-                                            {{ $tweet->like_cnt }} Like
-                                </button>
-
+                                <td>    
+                                          {{ $tweet->like_cnt }} Like
+                              
                                 </td>
                             </tr>
                         @endforeach

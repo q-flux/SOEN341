@@ -40,6 +40,7 @@ class HomeController extends Controller
     {
         $user = Auth::user()->id;
         $tweets = Tweets::where("user_id", $user)->get();
+        
         // $dates = $this->getDate($tweets);
         return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
     }
@@ -63,7 +64,6 @@ class HomeController extends Controller
     }
     public function feed()
     {
-
       $user = Auth::user()->id;
      $f_id = feed::where('id', $user)->get();
      $array = array();
@@ -71,6 +71,7 @@ class HomeController extends Controller
        array_push($array, $value->follow_id);
      }
      $tweets  = Tweets::whereIn('user_id',$array)->get();
+     
      $names = users::whereIn('id',$array)->get();
      echo $f_id;
     return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
