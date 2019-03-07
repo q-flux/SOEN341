@@ -55,7 +55,7 @@ class HomeController extends Controller
             'time_posted' => now(),
         ]);
             return redirect('/home');
-    }   
+    }
 
     public function delete($id)
     {
