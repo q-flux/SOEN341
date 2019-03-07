@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-        <h1>Your Feed</h1>
+        <h1>Here is your Feed!!</h1>
 
 
 @foreach ($f_id as $fid)
