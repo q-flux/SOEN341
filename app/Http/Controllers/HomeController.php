@@ -9,6 +9,7 @@ use \Datetime;
 use App\Tweets;
 use App\feed;
 use App\users;
+use App\Follow;
 use DB;
 
 class HomeController extends Controller
@@ -40,6 +41,7 @@ class HomeController extends Controller
     {
         $user = Auth::user()->id;
         $tweets = Tweets::where("user_id", $user)->get();
+        
         // $dates = $this->getDate($tweets);
         return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
     }
@@ -53,7 +55,7 @@ class HomeController extends Controller
             'time_posted' => now(),
         ]);
             return redirect('/home');
-    }   
+    }
 
     public function delete($id)
     {
@@ -63,16 +65,15 @@ class HomeController extends Controller
     }
     public function feed()
     {
-
       $user = Auth::user()->id;
-     $f_id = feed::where('id', $user)->get();
+     $f_id = Follow::where('user_id', Auth::user()->id)->get();
      $array = array();
      foreach ($f_id as $value) {
        array_push($array, $value->follow_id);
      }
      $tweets  = Tweets::whereIn('user_id',$array)->get();
+     
      $names = users::whereIn('id',$array)->get();
-     echo $f_id;
     return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
    }
 }

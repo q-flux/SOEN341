@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Flux') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('../js/app.js') }}" defer></script>
   
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,11 +19,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/ajax.js"></script>
+    <script src="../js/ajax.js"></script>
    
     <script>
-// this is for search bar functionality
-        $(document).on('keyup', '#search',function() {
+        // this is for search bar functionality
+        $(document).on('keyup', '#search', function() {
             $value = $(this).val();
             $search  = '{{URL('search')}}';
             setRequest($search,$value).done(function(data){
@@ -34,20 +34,7 @@
         $(document).click(function(){
             $('#table tbody').html('');
         })
-        $(document).on('click', '#like',function() {
-                $value = this.getAttribute('data-tweetID');
-                console.log($value);
-                $search  = '{{URL('like')}}';
-                setRequest($search,$value).done(function(data){
-                    $cntArray = data[0];        
-                    $cnt = $cntArray[0].like_cnt;
-                    $id = data[1];
-                    $("[data-tweetid="+$id+"]").html($cnt + " Like");
-                })
-        });
-        
-       
-        
+
     </script>
     <style>
    #table{
@@ -99,12 +86,10 @@
                         @else
                             <li class="nav-item">
                              <input type="text" class="form-controller" id="search" name="search">
-
                                 <table id="table">
                                   <tbody>
                                   </tbody>
                                 </table>
-                               
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
