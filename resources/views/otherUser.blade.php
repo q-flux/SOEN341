@@ -9,14 +9,28 @@
         <div class="col-md-4">
 
               
-                {{-- <h3>{{$output[1][0]->name}}</h3> --}}
-                <h3>{{$output[1]}}</h3>
+                <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre" style="
+                width: 100%;">
+                 <div class="container">
+                        <br>
+                <h3>Hi my name is <span style="border-bottom:1px solid black" >{{$output[1]}}</span></h3>
+                <h5>About Me</h5>
+                 <p>{{$output[4]}}</p> 
                 @if ($output[3] > 0)
-                    <a href="/follow/{{$output[2]}}"> You are already following this user </a>
+                    <a class="btn btn-primary" href="/follow/{{$output[2]}}"> Unfollow </a>
             
                 @else
-                    <a href="/follow/{{$output[2]}}"> Follow this user </a>
+                    <a class="btn btn-primary" href="/follow/{{$output[2]}}"> Follow </a>
                 @endif  
+                 </div>
+
+                {{-- <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre" style="
+                width: 100%;">
+         <div class="container">
+                <br>
+                <h3>Hi my name is <span style="border-bottom:1px solid black" > {{Auth::user()->name}} </span></h3>
+                <h5>About Me</h5>
+         <p>{{Auth::user()->biography}}</p> --}}
         </div>
    
         <div class="col-md-8">
