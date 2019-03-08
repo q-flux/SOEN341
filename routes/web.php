@@ -30,6 +30,8 @@ Route::get('/searchOther/{id}','OtherUserController@searchOther');
 Route::get('/like/{id}', 'LikeController@LikeTweet');
 // Route::get('search');
 //Route::get('/home','HomeController@feed')->name('home');
+
+Route::post('/edit', 'HomeController@edit');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');

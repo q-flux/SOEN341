@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/ajax.js"></script>
    
@@ -48,7 +49,7 @@
        cursor:pointer;
    }
    .btn{
-       background-color:#e9e9e9 !important;
+       /* background-color:#e9e9e9 !important; */
    }
     </style>
 
@@ -85,7 +86,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                             <input type="text" class="form-controller" id="search" name="search">
+                             <input type="text" class="form-control" id="search" name="search" autocomplete="off">
                                 <table id="table">
                                   <tbody>
                                   </tbody>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Tweets;
 use App\User;
+use App\Like;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -34,6 +35,7 @@ class TweetsTest extends TestCase
     {
         $user = factory(User::class)->create([
             'password' => bcrypt('i-love-laravel'),
+            'biography' => 'default biography'
         ]);
         
         $response = $this->from('/login')->post('/login', [
@@ -60,8 +62,9 @@ class TweetsTest extends TestCase
     public function authenticated_user_can_go_to_home()
     {
         //Given we have an authenticated user
-        $user = factory(User::class)->create();
-
+        $user = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
         $this->actingAs($user);
         
         //testing home route
@@ -87,12 +90,17 @@ class TweetsTest extends TestCase
     /** @test */
     public function authenticated_user_can_get_like()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $user1 = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
 
-        $response = $this->call('GET', '/like');
+        $this->actingAs($user1);
 
-        $this->assertEquals(200, $response->status());
+        $response = $this->call('GET', '/like/{2}');
+        $response->assertRedirect(
+            '/'
+        );
+        $this->assertEquals(302, $response->status());
             
     }
 
@@ -100,7 +108,9 @@ class TweetsTest extends TestCase
     public function authenticated_user_can_post_tweet()
     {
 
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
 
         $this->actingAs($user);
 
@@ -140,7 +150,9 @@ class TweetsTest extends TestCase
     /** @test */
     public function authenticated_user_delete_tweet()
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
 
         $this->actingAs($user);
 

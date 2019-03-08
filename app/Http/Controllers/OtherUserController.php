@@ -15,10 +15,11 @@ class OtherUserController extends Controller
         $username = users::where('id', $id)->first()->name;
         $userID = $id;
         $following = Follow::where('follow_id', $id)->where('user_id', Auth::user()->id)->count();
+        $biography = users::where('id', $id)->first()->biography;
      
 
         // $user = DB::table('users')->where('id', $id)->first();
-        $output = array($tweets, $username, $userID, $following);
+        $output = array($tweets, $username, $userID, $following, $biography);
 
         // $dates = $this->getDate($tweets);
         return view('otherUser', ['output' => $output]); //, 'like' => $tweetsLike 

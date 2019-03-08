@@ -24,6 +24,7 @@ class HomeController extends Controller
         $this->middleware('auth');
         $this->param = $request->param;
     }
+    
 
     /**
      * Show the application dashboard.
@@ -37,6 +38,15 @@ class HomeController extends Controller
         };
         return $dates;
     }
+
+    public function edit(Request $request)
+    {
+        users::where('id', Auth::user()->id)
+          ->update(['biography' => $request->input('biography')]);
+
+        return redirect()->back();
+    }
+
     public function index()
     {
         $user = Auth::user()->id;
