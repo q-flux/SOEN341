@@ -57,7 +57,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                <a id="like" href="/like/{{$tweet->id}}" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
+                                <a class="btn btn-primary" id="like" href="/like/{{$tweet->id}}" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
                                             {{ $tweet->like_cnt }} Like
                                 </a>
                                 </td>
