@@ -52,11 +52,6 @@
         </div>
 
         <div class="col-md-8">
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> upstream/master
         @include('common.errors')
         {{-- @if ($id) --}}
         <form method="POST" action = "{{ route('create')}}" class="form-horizontal">
@@ -93,13 +88,8 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-plus"></i> Tweet
                     </button>
-<<<<<<< HEAD
 
-                    <button type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
-=======
-                   
-                    <button type="button" class="btn btn-primary" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
->>>>>>> upstream/master
+                    <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
                 </div>
             </div>
         </form>
