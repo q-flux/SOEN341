@@ -39,8 +39,3 @@ I am dedicating this message to everyone, including the authors of the project. 
 * **Vinita Singh** - Vinita1319 (vinita.singh1319@gmail.com)
 
 
-# Project status
-
-Currently, we are creating a user story for the project and breaking  it down to individual tasks!
-
-
