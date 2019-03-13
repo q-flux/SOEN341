@@ -7,16 +7,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
+            @if (Storage::disk('local')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
+           <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-rounded img-responsive" style="
+                        width: 100%;">
+            @else <!-- else put a place holder -->
+                {{-- <img src="{{Auth::user()->image}}" class="img-rounded img-responsive" style="
+                width: 100%;"> --}}
+            @endif
 
-                <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre" style="
-                width: 100%;">
+        
+      
+        <form method="POST" action = "{{route('account.save')}}" class="form-horizontal" enctype="multipart/form-data"> 
+            {{ csrf_field() }}
+            <div class="form-group">
+                <input type="file" style="float:left" name="image" class="form-control-file" id="image">
+                <button type="submit" style="float:right" class="btn btn-primary">Upload Image</button>
+            </div>  
+        </form>
+
+        <div class="clearfix"></div>
+
          <div class="container">
                 <br>
                 <h3>Hi my name is <span style="border-bottom:1px solid black" > {{Auth::user()->name}} </span></h3>
                 <h5>About Me</h5>
          <p>{{Auth::user()->biography}}</p>
                
-
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProfile">Edit <i class="fa fa-pencil"> </i></button>
                 <!-- Modal -->
                 <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

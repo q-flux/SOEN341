@@ -1,0 +1,5 @@
+{
+    "phpformatter.composer": true,
+    "blade.format.enable": true,
+    "phpformatter.notifications": false
+}

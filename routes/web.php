@@ -18,27 +18,26 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::get('/feed', function ()
-// {
-//  return view('feed');
-//});
 Route::get('/feed','HomeController@feed');
 Auth::routes();
 Route::get('/search','SearchController@search');
 Route::get('/searchOther/{id}','OtherUserController@searchOther');
-
 Route::get('/like/{id}', 'LikeController@LikeTweet');
-// Route::get('search');
-//Route::get('/home','HomeController@feed')->name('home');
-
 Route::post('/edit', 'HomeController@edit');
+// Route::post('/edit', 'HomeController@editImage')->name('editImage');
+Route::post('/edit',[
+  'uses' => 'HomeController@addImage',
+  'as' => 'account.save'
+]);
+
+Route::get('/edit/{filename}',[
+  'uses' => 'HomeController@getUserImage',
+  'as' => 'account.image'
+]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
 Route::get('/follow/{id}', 'FollowController@Follow');
-/*Route::post('/like', [
-    'uses' => 'TweetController@LikeTweet',
-  'as' => 'like'
-]);*/
 
-// Route::delete('/home/{id}', function ($id) {
+

@@ -48,9 +48,7 @@
        background-color: #f7f7f7;
        cursor:pointer;
    }
-   .btn{
-       /* background-color:#e9e9e9 !important; */
-   }
+
     </style>
 
 </head>
