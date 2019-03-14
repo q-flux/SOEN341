@@ -4,7 +4,7 @@
   <div class="row">
         <div class="col-md-4">
           <div class="panel panel-default">
-            <div class="panel-heading">Create Listing</div>
+            <div class="panel-heading">Edit profile</div>
 
               <div class="panel-body">
                   {!!Form::open(['action' => 'ListingsController@store', 'method' => 'POST'])!!}
