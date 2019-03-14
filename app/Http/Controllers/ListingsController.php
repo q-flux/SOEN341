@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Listing;
 
 class ListingsController extends Controller
 {
@@ -34,7 +35,20 @@ class ListingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['name' => 'required']);
+
+        $listing = new Listing;
+        $listing->name = $request->input('name');
+        $listing->website = $request->input('website');
+        $listing->email = $request->input('email');
+        $listing->phone = $request->input('phone');
+        $listing->address = $request->input('address');
+        $listing->bio = $request->input('bio');
+        $listing->user_id = auth()->user()->id;
+
+        $listing->save();
+
+        return redirect('/home')->with('success', 'Profile Changed');
     }
 
     /**
@@ -56,7 +70,8 @@ class ListingsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listing = Listing::find($id);
+        return view('editprofile')->with('listing',$listing);
     }
 
     /**
@@ -68,7 +83,20 @@ class ListingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, ['name' => 'required']);
+
+        $listing = Listing::find($id);
+        $listing->name = $request->input('name');
+        $listing->website = $request->input('website');
+        $listing->email = $request->input('email');
+        $listing->phone = $request->input('phone');
+        $listing->address = $request->input('address');
+        $listing->bio = $request->input('bio');
+        $listing->user_id = auth()->user()->id;
+
+        $listing->save();
+
+        return redirect('/home')->with('success', 'Profile Updated');
     }
 
     /**
@@ -79,6 +107,8 @@ class ListingsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $listing = Listing::find($id);
+        $listing->delete();
+        return redirect('/home')->with('success', 'Removed');
     }
 }

@@ -15,6 +15,8 @@ use App\users;
 use App\Follow;
 use DB;
 
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -61,7 +63,7 @@ class HomeController extends Controller
         // $dates = $this->getDate($tweets);
 
         $user_id = auth()->user()->id;
-        $users = users::find($user_id);
+        $users = User::find($user_id);
 
         return view('home', ['tweets' => $tweets])->with('listings', $users->listings); //, 'like' => $tweetsLike
 
