@@ -33,7 +33,10 @@
                 <h5>About Me</h5>
          <p>{{Auth::user()->biography}}</p>
                
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProfile">Edit <i class="fa fa-pencil"> </i></button>
+               <div class="form-group"> Home <span class="pull-right"><a href="/listings/create" class="btn btn-success btn-xs">Edit profile</a></span>
+                            
+
+                </div>  
                 <!-- Modal -->
                 <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -49,15 +52,7 @@
 
                             {{ csrf_field() }}
 
-                                    <div class="form-group">
-                              
-                                        <textarea class="form-control" rows="5" id="comment" name="biography"></textarea>
-                                        <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-
-                                    </div>  
+                                    
                             </form>
                            
                         </div>

@@ -59,7 +59,12 @@ class HomeController extends Controller
         $tweets = Tweets::where("user_id", $user)->get();
 
         // $dates = $this->getDate($tweets);
-        return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
+
+        $user_id = auth()->user()->id;
+        $users = users::find($user_id);
+
+        return view('home', ['tweets' => $tweets])->with('listings', $users->listings); //, 'like' => $tweetsLike
+
     }
 
     // this method adds new image
