@@ -35,4 +35,10 @@ class User extends Authenticatable
         public function likes(){
           return $this->hasMany('App\likes');
         }*/
+
+    // Add one to many relationship
+    public function listings(){
+        return $this->hasMany('App\Listing');
+    }
+
 }

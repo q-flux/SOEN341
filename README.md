@@ -29,7 +29,6 @@ I am dedicating this message to everyone, including the authors of the project. 
 # Authors ( Github username and email )
 
 * **Dong Jae Kim** - djaekim (djaekim086@gmail.com)
-* **Ali Nasiri Pour** - Alinpour (ali.npour7@gmail.com)
 * **Jake Dos Santos** - Derpsantos (jake.dos.santos@outlook.com)
 * **Kasra Laamerad** - kasrarad (kasral89@gmail.com)
 * **KoteswaraRao Kothamasu** - koti-github (rao.kothamasu@ymail.com)

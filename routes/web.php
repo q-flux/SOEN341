@@ -54,4 +54,6 @@ Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
 Route::get('/follow/{id}', 'FollowController@Follow');
 
+Route::resource('listings', 'ListingsController');
+
 

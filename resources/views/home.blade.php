@@ -18,13 +18,49 @@
 
             <div class="clearfix"></div>
 
-            <div class="container">
+         <div class="container">
+            @include('inc.messages')
                 <br>
-                <h3>Hi my name is <span style="border-bottom:1px solid black"> {{Auth::user()->name}} </span></h3>
-                <h5>About Me</h5>
-                <p>{{Auth::user()->biography}}</p>
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProfile">Edit <i class="fa fa-pencil"> </i></button>
+                <br>
+              <div class="panel panel-default"> 
+               <div class="panel-heading"> Home <span class="pull-right"><a href="/listings/create" class="btn btn-success btn-xs">profile</a></span>
+                    <div class="panel-body">
+                        @if(count($listings))
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>About Me</th>
+                                    <th></th>  
+                                    <th></th>
+                                </tr>
+                                @foreach($listings as $listing)
+                                    <tr>
+                                        <td>Name: {{$listing->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bio: {{$listing->bio}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Location: {{$listing->address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Website: {{$listing->website}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a class="pull-right btn btn-default" href="/listings/{{$listing->id}}/edit">Edit</a></td> 
+                                        <td>
+                                            {!!Form::open(['action' => ['ListingsController@destroy', $listing->id], 'method' => 'POST', 'class' => 'pull-left', 'onsubmit' => 'return confirm("Are you sure?")'])!!}
+                                              {{Form::hidden('_method', 'DELETE')}}
+                                              {{Form::bsSubmit('Delete', ['class' => 'btn btn-danger'])}}
+                                            {!! Form::close() !!}
+                                        </td> 
+                                    </tr>
+                                @endforeach
+                            </table>
+                        @endif     
+                    </div>
+                </div> 
+                </div> 
+                <!-- Modal -->
                 <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -40,13 +76,7 @@
 
                                 <div class="form-group">
 
-                                    <textarea class="form-control" rows="5" id="comment" name="biography"></textarea>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-
-                                </div>
+                                    
                             </form>
 
                         </div>

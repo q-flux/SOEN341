@@ -15,6 +15,8 @@ use App\users;
 use App\Follow;
 use DB;
 
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -59,7 +61,12 @@ class HomeController extends Controller
         $tweets = Tweets::where("user_id", $user)->get();
 
         // $dates = $this->getDate($tweets);
-        return view('home', ['tweets' => $tweets]); //, 'like' => $tweetsLike
+
+        $user_id = auth()->user()->id;
+        $users = User::find($user_id);
+
+        return view('home', ['tweets' => $tweets])->with('listings', $users->listings); //, 'like' => $tweetsLike
+
     }
 
     // this method adds new image
