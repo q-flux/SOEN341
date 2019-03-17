@@ -15,26 +15,40 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+// welcome page
 Route::get('/', function () {
     return view('welcome');
 });
+
+// feed page
 Route::get('/feed','HomeController@feed');
+
+// authenticate middleware
 Auth::routes();
+
+// return results of the search
 Route::get('/search','SearchController@search');
+
+// return other user prfile
 Route::get('/searchOther/{id}','OtherUserController@searchOther');
+
+// likes a tweet
 Route::get('/like/{id}', 'LikeController@LikeTweet');
+
+// edit biography
 Route::post('/edit', 'HomeController@edit');
-// Route::post('/edit', 'HomeController@editImage')->name('editImage');
+
+// add a profile image
 Route::post('/edit',[
   'uses' => 'HomeController@addImage',
   'as' => 'account.save'
 ]);
 
+
 Route::get('/edit/{filename}',[
   'uses' => 'HomeController@getUserImage',
   'as' => 'account.image'
 ]);
-
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
