@@ -15,14 +15,14 @@
                 width: 100%;"> --}}
             @endif
 
-        
-      
-        <form method="POST" action = "{{route('account.save')}}" class="form-horizontal" enctype="multipart/form-data"> 
+
+
+        <form method="POST" action = "{{route('account.save')}}" class="form-horizontal" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="form-group">
                 <input type="file" style="float:left" name="image" class="form-control-file" id="image">
                 <button type="submit" style="float:right" class="btn btn-primary">Upload Image</button>
-            </div>  
+            </div>
         </form>
 
         <div class="clearfix"></div>
@@ -31,22 +31,12 @@
             @include('inc.messages')
                 <br>
                 <br>
-              <div class="panel panel-default"> 
-                @if(count($listings))
-                    @foreach($listings as $listing)
-                        <div class="panel-heading"> Home <span class="pull-right"><a href="/listings/{{$listing->id}}/edit" class="btn btn-success btn-xs">profile</a></span>
-                    @endforeach
-                @else
-                    <div class="panel-heading"> Home <span class="pull-right"><a href="/listings/create" class="btn btn-success btn-xs">profile</a></span>
-                @endif   
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h1> Personal Info </h1>
                     <div class="panel-body">
                         @if(count($listings))
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>About Me</th>
-                                    <th></th>  
-                                    <th></th>
-                                </tr>
+                            <table class="table table-borderless table-sm">
                                 @foreach($listings as $listing)
                                     <tr>
                                         <td>Name: {{$listing->name}}</td>
@@ -60,20 +50,20 @@
                                     <tr>
                                         <td>Website: {{$listing->website}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             {!!Form::open(['action' => ['ListingsController@destroy', $listing->id], 'method' => 'POST', 'class' => 'pull-left', 'onsubmit' => 'return confirm("Are you sure?")'])!!}
                                               {{Form::hidden('_method', 'DELETE')}}
                                               {{Form::bsSubmit('Delete', ['class' => 'btn btn-danger'])}}
                                             {!! Form::close() !!}
-                                        </td> 
-                                    </tr>
+                                        </td>
+                                    </tr> -->
                                 @endforeach
                             </table>
-                        @endif     
+                        @endif
                     </div>
-                </div> 
-                </div> 
+                </div>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -89,14 +79,14 @@
 
                             {{ csrf_field() }}
 
-                                    
+
                             </form>
-                           
+
                         </div>
                         </div>
                     </div>
-                </div>       
-        
+                </div>
+
         </div>
 
         <div class="col-md-8">
@@ -137,12 +127,14 @@
                         <i class="fa fa-plus"></i> Tweet
                     </button>
 
-                    <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
+                    <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
+                      View Feed
+                    </button>
+                    <a href="/listings/create" class="btn btn-primary btn-xs">Edit Profile</a>
                 </div>
             </div>
         </form>
         {{-- @endif --}}
-
 
 
         @if (count($tweets) > 0)
