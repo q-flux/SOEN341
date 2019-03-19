@@ -54,7 +54,7 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-    // this method returns tweets when the user goes to /home 
+    // this method returns tweets when the user goes to /home
     public function index()
     {
         $user = Auth::user()->id;
@@ -115,6 +115,7 @@ class HomeController extends Controller
     {
         $user = Auth::user()->id;
         $f_id = Follow::where('user_id', Auth::user()->id)->get();
+        echo(sizeof($f_id));
         $array = array();
         foreach ($f_id as $value) {
             array_push($array, $value->follow_id);
@@ -123,5 +124,20 @@ class HomeController extends Controller
 
         $names = users::whereIn('id', $array)->get();
         return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
+    }
+
+    //Counts the number of Followers
+    public static function getFollowersCount()
+    {
+      $user = Auth::user()->id;
+      $f_id = Follow::where('follow_id', Auth::user()->id)->get();
+      return sizeof($f_id);
+    }
+
+    public static function getFollowingCount()
+    {
+      $user = Auth::user()->id;
+      $f_id = Follow::where('user_id', Auth::user()->id)->get();
+      return sizeof($f_id);
     }
 }

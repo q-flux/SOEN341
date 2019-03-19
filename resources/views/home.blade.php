@@ -136,7 +136,22 @@
         </form>
         {{-- @endif --}}
 
-
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong> {{app\Http\Controllers\HomeController::getFollowersCount()}} </strong></h2>
+              <p><strong>Followers</strong></p>
+          </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong>{{app\Http\Controllers\HomeController::getFollowingCount()}}</strong></h2>
+              <p><strong>Following</strong></p>
+              </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong>{{count($tweets)}}</strong></h2>
+              <p><strong>Tweets</strong></p>
+              </div>
+        </div>
+      </div>
         @if (count($tweets) > 0)
         <div class="panel panel-default">
             <div class="panel-heading">
