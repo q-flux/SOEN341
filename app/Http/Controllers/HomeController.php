@@ -122,7 +122,6 @@ class HomeController extends Controller
         $tweets  = Tweets::whereIn('user_id', $array)->get();
 
         $names = users::whereIn('id', $array)->get();
-        echo ($names);
         return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
     }
 
