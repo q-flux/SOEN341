@@ -32,10 +32,13 @@
                 $('#table tbody').html(data);
             })
         })
-        
         $(document).click(function(){
             $('#table tbody').html('');
         })
+        
+        
+        
+      
     </script>
     <style>
         #table {
@@ -61,6 +64,20 @@
             width: 500px;
             height: 375px;
             background-color: #666;
+        }
+
+        .image-input {
+            max-width: 80%;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
+            color: #d3394c;
+            border: 2px solid #2073b8;
+            color: #2176bd;
+            overflow: hidden;
+            padding: 0.3rem 1rem;
         }
     </style>
 
