@@ -27,6 +27,37 @@
 
         <div class="clearfix"></div>
 
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12 col-sm-4 emphasis">
+                <div class="dropdown show">
+                  <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Following
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  @foreach(app\Http\Controllers\HomeController::getFollowingList() as $name)
+                  <a class="dropdown-item" href="#">{{$name}}</a>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 emphasis">
+              <div class="dropdown show">
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Followers
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach(app\Http\Controllers\HomeController::getFollowersList() as $name)
+                <a class="dropdown-item" href="#">{{$name}}</a>
+                @endforeach
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+
          <div class="container">
             @include('inc.messages')
                 <br>
@@ -86,8 +117,8 @@
                         </div>
                     </div>
                 </div>
-
         </div>
+
 
         <div class="col-md-8">
         @include('common.errors')
