@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 
 <div class="container">
@@ -30,6 +30,22 @@
             </div>
 
             <div class="col-md-8">
+              <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong> {{$output[5]}} </strong></h2>
+                        <p><strong>Followers</strong></p>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong>{{$output[6]}}</strong></h2>
+                        <p><strong>Following</strong></p>
+                        </div>
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong>{{$output[7]}}</strong></h2>
+                        <p><strong>Tweets</strong></p>
+                        </div>
+                  </div>
+                </div>
 
                 @if (count($output[0]) > 0) {{-- {{$tweets = $output[0]}} --}}
                 <div class="panel panel-default">

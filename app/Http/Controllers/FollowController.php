@@ -12,7 +12,7 @@ class FollowController extends Controller
 {
     public function Follow($id){
         //$id is the ID  of the user to follow
-        
+
         $follow = Follow::where('follow_id', $id)->where('user_id', Auth::user()->id)->count();
         if ($follow){
             // has never been followed yet
@@ -27,10 +27,11 @@ class FollowController extends Controller
         }
 
     }
+    
 }
 
 // $userLikedTweet = Auth::user()->id;
-     
+
 
 // $likes = Like::where('tweet_id', $id)->where('user_id',$userLikedTweet)->count();
 
@@ -41,14 +42,14 @@ class FollowController extends Controller
 //         'like_cnt'=> DB::raw('like_cnt-1')
 //     ]);
 //     return redirect()->back();
-// } 
+// }
 // else {
 //     Like::create([
 //         'user_id' => Auth::user()->id,
 //         'tweet_id' => $id
-//     ]); 
+//     ]);
 //     Tweets::where("id", $id)->update([
 //         'like_cnt'=> DB::raw('like_cnt+1')
 //     ]);
 //     return redirect()->back();
-// }      
+// }
