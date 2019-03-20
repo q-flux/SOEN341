@@ -63,8 +63,19 @@
                 <br>
                 <br>
               <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h1> Personal Info </h1>
+                @if(count($listings))
+                    @foreach($listings as $listing)
+                        <div class="panel-heading">
+
+                          <span class="pull-right">
+                        </span>
+                    @endforeach
+                @else
+                    <div class="panel-heading">
+                    
+                      <span class="pull-right">
+                      </span>
+                @endif
                     <div class="panel-body">
                         @if(count($listings))
                             <table class="table table-borderless table-sm">
@@ -161,7 +172,16 @@
                     <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
                       View Feed
                     </button>
-                    <a href="/listings/create" class="btn btn-primary btn-xs">Edit Profile</a>
+                    @if(count($listings))
+                        @foreach($listings as $listing)
+                                <a href="/listings/{{$listing->id}}/edit"
+                                  class="btn btn-primary btn-xs">Edit Profile</a>
+                              </span>
+                        @endforeach
+                    @else
+                      <a href="/listings/create" class="btn btn-primary btn-xs">Edit Profile</a>
+                    @endif
+
                 </div>
             </div>
         </form>
