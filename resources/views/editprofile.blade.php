@@ -5,7 +5,7 @@
   <div class="row">
         <div class="col-md-4">
           <div class="panel panel-default">
-            <div class="panel-heading">Edit profile <a href="/home" class="pull-right btn btn-default btn-xs">Go Back</a></div>
+            <div class="panel-heading">Edit Profile <a href="/home" class="pull-right btn btn-default btn-xs">Go Back</a></div>
 
               <div class="panel-body">
                   {!!Form::open(['action' => ['ListingsController@update', $listing->id], 'method' => 'POST'])!!}
@@ -16,7 +16,7 @@
                   {{Form::bsText('address', $listing->address, ['placeholder' => 'Address'])}}
                   {{Form::bsText('bio', $listing->bio, ['placeholder' => 'About yourself'])}}
                   {{Form::hidden('_method', 'PUT')}}
-                  {{Form::bsSubmit('submit')}}
+                  {{Form::bsSubmit('Submit')}}
                   {!! Form::close() !!}
               </div>
 
@@ -27,4 +27,6 @@
         </div>
   </div>
 </div>
+
+
 @endsection

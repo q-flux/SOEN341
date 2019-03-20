@@ -5,39 +5,77 @@
     <div class="row">
         <div class="col-md-4">
             @if (Storage::disk('local')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
-            <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-rounded img-responsive"
-                style="
-                        width: 100%;"> @endif
-            <form method="POST" action="{{route('account.save')}}" class="form-horizontal" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <input type="file" style="float:left" name="image" class="form-control-file" id="image">
-                    <button type="submit" style="float:right" class="btn btn-primary">Upload Image</button>
-                </div>
-            </form>
+           <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-rounded img-responsive" style="
+                        width: 100%;">
+            @else <!-- else put a place holder -->
+                {{-- <img src="{{Auth::user()->image}}" class="img-rounded img-responsive" style="
+                width: 100%;"> --}}
+            @endif
+
+
+
+        <form method="POST" action = "{{route('account.save')}}" class="form-horizontal" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <input type="file" style="float:left" name="image" class="form-control-file" id="image">
+                <button type="submit" style="float:right" class="btn btn-primary">Upload Image</button>
+            </div>
+        </form>
 
             <div class="clearfix"></div>
+
+      <div class="container">
+          <div class="row">
+              <div class="col-xs-12 col-sm-4 emphasis">
+                <div class="dropdown show">
+                  <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                  id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Following
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  @foreach(app\Http\Controllers\HomeController::getFollowingList() as $name)
+                  <a class="dropdown-item" href="#">{{$name}}</a>
+                  @endforeach
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-4 emphasis">
+              <div class="dropdown show">
+                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
+                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Followers
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @foreach(app\Http\Controllers\HomeController::getFollowersList() as $name)
+                <a class="dropdown-item" href="#">{{$name}}</a>
+                @endforeach
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
 
          <div class="container">
             @include('inc.messages')
                 <br>
                 <br>
-              <div class="panel panel-default"> 
+              <div class="panel panel-default">
                 @if(count($listings))
                     @foreach($listings as $listing)
-                        <div class="panel-heading"> Home <span class="pull-right"><a href="/listings/{{$listing->id}}/edit" class="btn btn-success btn-xs">profile</a></span>
+                        <div class="panel-heading">
+
+                          <span class="pull-right">
+                        </span>
                     @endforeach
                 @else
-                    <div class="panel-heading"> Home <span class="pull-right"><a href="/listings/create" class="btn btn-success btn-xs">profile</a></span>
-                @endif   
+                    <div class="panel-heading">
+                    
+                      <span class="pull-right">
+                      </span>
+                @endif
                     <div class="panel-body">
                         @if(count($listings))
-                            <table class="table table-striped">
-                                <tr>
-                                    <th>About Me</th>
-                                    <th></th>  
-                                    <th></th>
-                                </tr>
+                            <table class="table table-borderless table-sm">
                                 @foreach($listings as $listing)
                                     <tr>
                                         <td>Name: {{$listing->name}}</td>
@@ -51,20 +89,20 @@
                                     <tr>
                                         <td>Website: {{$listing->website}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             {!!Form::open(['action' => ['ListingsController@destroy', $listing->id], 'method' => 'POST', 'class' => 'pull-left', 'onsubmit' => 'return confirm("Are you sure?")'])!!}
                                               {{Form::hidden('_method', 'DELETE')}}
                                               {{Form::bsSubmit('Delete', ['class' => 'btn btn-danger'])}}
                                             {!! Form::close() !!}
-                                        </td> 
-                                    </tr>
+                                        </td>
+                                    </tr> -->
                                 @endforeach
                             </table>
-                        @endif     
+                        @endif
                     </div>
-                </div> 
-                </div> 
+                </div>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -81,16 +119,16 @@
 
                                 <div class="form-group">
 
-                                    
+
                             </form>
 
                         </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-
         </div>
     </div>
+
 
         <div class="col-md-8">
     @include('common.errors') {{-- @if ($id) --}}
@@ -129,15 +167,45 @@
                         <i class="fa fa-plus"></i> Tweet
                     </button>
 
-                        <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">View Feed</button>
-                    </div>
+                    <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
+                      View Feed
+                    </button>
+                    @if(count($listings))
+                        @foreach($listings as $listing)
+                                <a href="/listings/{{$listing->id}}/edit"
+                                  class="btn btn-primary btn-xs">Edit Profile</a>
+                              </span>
+                        @endforeach
+                    @else
+                      <a href="/listings/create" class="btn btn-primary btn-xs">Edit Profile</a>
+                    @endif
+
                 </div>
-            </form>
-            {{-- @endif --}} @if (count($tweets) > 0)
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Your Posts
-                </div>
+            </div>
+        </form>
+        {{-- @endif --}}
+
+    <div class="container">
+      <div class="row">
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong> {{app\Http\Controllers\HomeController::getFollowersCount()}} </strong></h2>
+              <p><strong>Followers</strong></p>
+          </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong>{{app\Http\Controllers\HomeController::getFollowingCount()}}</strong></h2>
+              <p><strong>Following</strong></p>
+              </div>
+          <div class="col-xs-12 col-sm-4 emphasis">
+              <h2><strong>{{count($tweets)}}</strong></h2>
+              <p><strong>Tweets</strong></p>
+              </div>
+        </div>
+      </div>
+        @if (count($tweets) > 0)
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               Your Posts
+            </div>
 
                 <div class="panel-body">
                     <table class="table table-striped task-table">
