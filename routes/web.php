@@ -52,8 +52,12 @@ Route::get('/edit/{filename}',[
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'HomeController@create')->name('create');
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
+Route::post('/deletePhoto/{id}', 'HomeController@deletePhoto')->name('deletePhoto');
 Route::get('/follow/{id}', 'FollowController@Follow');
 
 Route::resource('listings', 'ListingsController');
 
+Route::get('/home/Photos/create', 'PhotosController@create');
+Route::post('/home/Photos/store', 'PhotosController@store');
+Route::get('/home/{id}', 'HomeController@show');
 

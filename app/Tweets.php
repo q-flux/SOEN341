@@ -8,4 +8,7 @@ class Tweets extends Model
 {
     public $timestamps = false;
     protected $guarded = [];
+    public function photos(){
+        return $this->hasOne('App\Photo');
+    }
 }

@@ -81,15 +81,25 @@
         }
     </style>
 
+    <title>PhotoShow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.css">
+
 </head>
 
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Flux') }}
-                </a>
+                <u1 class="menu">
+                    @if(Request::is('register') || Request::is('login'))
+                      <li class="menu-text">Flux</li>
+                      <li><a href="/">Home</a></li>
+                    @else
+                      <li class="menu-text">Flux</li>
+                      <li><a href="/home">Home</a></li>
+                      <li><a href="/home/show">Photo</a></li>
+                    @endif
+                </u1>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

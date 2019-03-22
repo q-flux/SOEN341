@@ -157,6 +157,8 @@
                                 <i class="fa fa-plus"></i> Tweet
                             </button>
 
+                            <a href="home/Photos/create" class="btn btn-success btn-xs">Tweet Image</a></span>
+
                             <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
                             View Feed
                           </button>
@@ -201,20 +203,40 @@
                                     <th>{{$tweet->time_posted}}</th>
                                     <th>&nbsp;</th>
                                 </thead>
-                                <tr>
-                                    <!-- Task Name -->
-                                    <td class="table-text">
-                                        <div>{{ $tweet->tweet_text }}</div>
-                                    </td>
+                                @if ( !empty ( $tweet->photo ) )
+                                     <tr>
+                                        <td class="table-text">
+                                            <div class='medium-8 columns end'>
+                                                <br>
+                                                <br>
+                                                <a href="/photos/{{$tweet->id}}">
+                                                    <img class="thumbnail" src="/storage/photos/{{$tweet->photo}}">
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <form method="POST" action="{{ route('deletePhoto', ['id' => $tweet->id])}}">
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-dark"> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <!-- Task Name -->
+                                        <td class="table-text">
+                                            <div>{{ $tweet->tweet_text }}</div>
+                                        </td>
 
-                                    <td>
-                                        <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-dark"> Delete</button>
-                                        </form>
-                                    </td>
+                                        <td>
+                                            <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-dark"> Delete</button>
+                                            </form>
+                                        </td>
 
-                                </tr>
+                                    </tr>
+                                @endif
                                 <tr>
                                     <td>
                                         {{ $tweet->like_cnt }} Like

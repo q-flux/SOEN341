@@ -20,6 +20,8 @@ class CreateTweetsTable extends Migration
             $table->timestamp('time_posted');
             $table->bigInteger('like_cnt');
             $table->bigInteger('reply_cnt');
+            $table->string('photo')->nullable();
+            $table->bigInteger('photo_id')->nullable();
         });
     }
 

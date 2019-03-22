@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use \Datetime;
 
 use App\Tweets;
+use App\Photo;
 use App\feed;
 use App\users;
 use App\Follow;
@@ -107,7 +108,18 @@ class HomeController extends Controller
     {
         $tweet = Tweets::find($id);
         $tweet->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Tweet Deleted');
+    }
+    public function deletePhoto($id)
+    {
+        $tweet = Tweets::find($id);
+        $photo = Photo::find($tweet->photo_id);
+        if(Storage::delete('public/photos/'.$photo->photo)){
+          $photo->delete();
+        }
+        //$photo->delete();
+        $tweet->delete();
+        return redirect()->back()->with('success', 'Tweet Deleted');
     }
 
     // this method gets the feed and redirects to the feed page
@@ -169,5 +181,12 @@ class HomeController extends Controller
       $user = Auth::user()->id;
       $f_id = Follow::where('user_id', Auth::user()->id)->get();
       return sizeof($f_id);
+    }
+
+    // this method show tweets with image
+    public function show($id){
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('photos.show')->with('photos', $user->photos);
     }
 }
