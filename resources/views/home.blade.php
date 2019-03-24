@@ -5,9 +5,8 @@
     <div class="row">
         <div class="col-md-4">
             @if (Storage::disk('local')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
-            <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-rounded img-responsive"
-                style="
-                        width: 100%;"> 
+            <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-responsive"
+                style="width: 100%;"> 
             @endif
 
             <br>
