@@ -21,7 +21,7 @@ class TweetsTest extends TestCase
         $response->assertSuccessful();
         $response->assertViewIs('auth.login');
     }
-    
+
     /** @test */
     public function test_user_can_view_a_register_form()
     {
@@ -37,19 +37,19 @@ class TweetsTest extends TestCase
             'password' => bcrypt('i-love-laravel'),
             'biography' => 'default biography'
         ]);
-        
+
         $response = $this->from('/login')->post('/login', [
             'email' => $user->email,
             'password' => 'invalid-password',
         ]);
-        
+
         $response->assertRedirect('/login');
         $response->assertSessionHasErrors('email');
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
     }
-    
+
     /** @test */
     public function test_user_cannot_view_a_login_form_when_authenticated()
     {
@@ -66,7 +66,7 @@ class TweetsTest extends TestCase
             'biography' => 'default biography'
         ]);
         $this->actingAs($user);
-        
+
         //testing home route
         $response = $this->call('GET', '/home');
 
@@ -76,7 +76,7 @@ class TweetsTest extends TestCase
     /** @test */
     public function unauthenticated_user_returned_to_login()
     {
-        
+
         //testing home route
         $response = $this->call('GET', '/home');
 
@@ -101,7 +101,7 @@ class TweetsTest extends TestCase
             '/'
         );
         $this->assertEquals(302, $response->status());
-            
+
     }
 
     /** @test */
@@ -115,11 +115,11 @@ class TweetsTest extends TestCase
         $this->actingAs($user);
 
         $tweet = ['tweet' => 'hello'];
-     
+
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(1, Tweets::all()->count());
-        
+
     }
 
     /** @test */
@@ -127,11 +127,11 @@ class TweetsTest extends TestCase
     {
 
         $tweet = ['tweet' => 'hello'];
-        
+
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(302, $response->status());
-        
+
         $response->assertRedirect(
             '/login'
         );
@@ -141,7 +141,7 @@ class TweetsTest extends TestCase
     public function unauthenticated_user_cannot_post_tweet()
     {
         $tweet = ['tweet' => 'hello'];
-    
+
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(0, Tweets::all()->count());
@@ -157,7 +157,7 @@ class TweetsTest extends TestCase
         $this->actingAs($user);
 
         $tweet = ['tweet' => 'hello'];
-    
+
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(1, Tweets::all()->count());
@@ -167,9 +167,39 @@ class TweetsTest extends TestCase
         $this->assertEquals(302, $responseDelete->status());
 
         $this->assertEquals(0, Tweets::all()->count());
- 
+
     }
+
+    /** @test */
+  public function user_can_edit()
+  {
+    $user1 = factory(User::class)->create([
+        'biography' => 'default biography'
+    ]);
+
+    $this->actingAs($user1);
+
+    $response = $this->call('edit', 'biography', 'new_bio');
+
+    $this->assertEquals(302, $response->status());
+  }
+
+  /** @test*/
+  public function search_other_user()
+  {
+    $user1 = factory(User::class)->create([
+        'biography' => 'default biography'
+    ]);
+    $user2 = factory(User::class)->create([
+        'biography' => 'default biography'
+    ]);
+    $this->actingAs($user1);
+
+      $response = $this->call('search', $user2);
+
+      $response = $this->call('GET', '/otherUser');
+
+      $this->assertEquals(200, $response->status());
+
+  }
 }
-
-      
-
