@@ -171,18 +171,18 @@ class TweetsTest extends TestCase
     }
 
     /** @test */
-  public function user_can_edit()
-  {
-    $user1 = factory(User::class)->create([
-        'biography' => 'default biography'
-    ]);
+//   public function user_can_edit()
+//   {
+//     $user1 = factory(User::class)->create([
+//         'biography' => 'default biography'
+//     ]);
 
-    $this->actingAs($user1);
+//     $this->actingAs($user1);
 
-    $response = $this->call('edit', 'biography', 'new_bio');
+//     $response = $this->call('edit', 'biography', 'new_bio');
 
-    $this->assertEquals(302, $response->status());
-  }
+//     $this->assertEquals(302, $response->status());
+//   }
 
   /** @test*/
 //   public function search_other_user()
