@@ -151,7 +151,7 @@ class TweetsTest extends TestCase
     public function authenticated_user_delete_tweet()
     {
         $user = factory(User::class)->create([
-            'biography' => 'default biography'
+            'biography' => 'sdefault biography'
         ]);
 
         $this->actingAs($user);
