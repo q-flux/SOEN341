@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Tweets;
 use App\users;
 use App\Follow;
+use App\Listing;
 
 class OtherUserController extends Controller
 {
@@ -18,7 +19,7 @@ class OtherUserController extends Controller
         $biography = users::where('id', $id)->first()->biography;
         $followerCount = sizeof(Follow::where('follow_id', $id)->get());
         $followingCount = sizeof(Follow::where('user_id', $id)->get());
-
+        $listings = Listing::where("user_id", $id)->get();
 
 
         // $user = DB::table('users')->where('id', $id)->first();
@@ -26,6 +27,6 @@ class OtherUserController extends Controller
                         $followerCount, $followingCount, count($tweets));
 
         // $dates = $this->getDate($tweets);
-        return view('otherUser', ['output' => $output]); //, 'like' => $tweetsLike
+        return view('otherUser', ['output' => $output])->with('listings', $listings); //, 'like' => $tweetsLike
     }
 }

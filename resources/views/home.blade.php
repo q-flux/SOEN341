@@ -5,8 +5,9 @@
     <div class="row">
         <div class="col-md-4">
             @if (Storage::disk('local')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
-            <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-responsive"
-                style="width: 100%;"> 
+            <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-rounded img-responsive"
+                style="
+                        width: 100%;"> 
             @endif
 
             <br>
@@ -33,9 +34,9 @@
                         <span class="pull-right">
                         </span> @endforeach @else
                         <div class="panel-heading">
-
                             <span class="pull-right">
-                      </span> @endif
+                            </span> 
+                    @endif
                             <div class="panel-body">
                                 @if(count($listings))
                                 <table class="table table-borderless table-sm">
@@ -52,14 +53,6 @@
                                     <tr>
                                         <td>Website: {{$listing->website}}</td>
                                     </tr>
-                                    <!-- <tr>
-                                        <td>
-                                            {!!Form::open(['action' => ['ListingsController@destroy', $listing->id], 'method' => 'POST', 'class' => 'pull-left', 'onsubmit' => 'return confirm("Are you sure?")'])!!}
-                                              {{Form::hidden('_method', 'DELETE')}}
-                                              {{Form::bsSubmit('Delete', ['class' => 'btn btn-danger'])}}
-                                            {!! Form::close() !!}
-                                        </td>
-                                    </tr> -->
                                     @endforeach
                                 </table>
                                 @endif
@@ -202,16 +195,25 @@
                                     <th>{{$tweet->time_posted}}</th>
                                     <th>&nbsp;</th>
                                 </thead>
-                                @if ( !empty ( $tweet->photo ) )
-                                     <tr>
+                                    <tr>
+                                        <!-- Task Name -->
                                         <td class="table-text">
-                                            <div class='medium-8 columns end'>
-                                                <br>
-                                                <br>
-                                                <a href="/photos/{{$tweet->id}}">
-                                                    <img class="thumbnail" src="/storage/photos/{{$tweet->photo}}">
-                                                </a>
-                                            </div>
+                                            <div>{{ $tweet->tweet_text }}</div>
+                                        </td>
+                                        @if ( empty ( $tweet->photo ) )
+                                        <td>
+                                            <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
+                                                {{ csrf_field() }}
+                                                <button type="submit" class="btn btn-dark"> Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @else
+                                     <tr>
+                                        <td>
+                                            <a href="/photos/{{$tweet->photo_id}}">
+                                                <img class="thumbnail" src="/storage/photos/{{$tweet->photo}}">
+                                            </a>
                                         </td>
                                         <td>
                                             <form method="POST" action="{{ route('deletePhoto', ['id' => $tweet->id])}}">
@@ -219,27 +221,11 @@
                                                 <button type="submit" class="btn btn-dark"> Delete</button>
                                             </form>
                                         </td>
-                                    </tr>
-                                @else
-                                    <tr>
-                                        <!-- Task Name -->
-                                        <td class="table-text">
-                                            <div>{{ $tweet->tweet_text }}</div>
-                                        </td>
-
-                                        <td>
-                                            <form method="POST" action="{{ route('delete', ['id' => $tweet->id])}}">
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-dark"> Delete</button>
-                                            </form>
-                                        </td>
-
-                                    </tr>
+                                     </tr>
                                 @endif
                                 <tr>
                                     <td>
                                         {{ $tweet->like_cnt }} Like
-
                                     </td>
                                 </tr>
                                 @endforeach
