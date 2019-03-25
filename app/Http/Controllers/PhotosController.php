@@ -9,57 +9,69 @@ use App\users;
 
 class PhotosController extends Controller
 {
-     public function index()
-    {
-    	
-    }
+	public function index()
+	{ }
 
-    public function create()
-    {
-        return view('photos.create');
-    }
+	public function create()
+	{
+		return view('photos.create');
+	}
 
-    public function store(Request $request){
-    	$this->validate($request,[
-    		'photo' => 'image|max:1999'
-    	]);
+	public function store(Request $request)
+	{
+		$this->validate($request, [
+			'photo' => 'image|max:1999'
+		]);
 
-   	// Get filename with extension
-   	$wholeFilename = $request->file('photo')->getClientOriginalName();
-    	
-    // Get just the filename
-   	$filename = pathinfo($wholeFilename, PATHINFO_FILENAME);
 
-   	// Get extension
-   	$extension = $request->file('photo')->getClientOriginalExtension();
+		// check whether photo exists
+		if ($request->file('photo')) {
 
-   	// Create new filename
-   	$newfilename = $filename.'_'.time().'.'.$extension;
+			$wholeFilename = $request->file('photo')->getClientOriginalName();
+			// Get just the filename
+			$filename = pathinfo($wholeFilename, PATHINFO_FILENAME);
 
-   	// Upload image
-   	$path = $request->file('photo')->storeAs('public/Photos/', $newfilename);
 
-   	// Create
-   	$photo = new Photo;
-   	$photo->user_id = auth()->user()->id;
-   	$photo->tweet_text = $request->input('tweet_text');
-   	$photo->photo = $newfilename;
 
-   	$photo->save();
+			// Get extension
+			$extension = $request->file('photo')->getClientOriginalExtension();
 
-   	// Create
-   	$tweet = new Tweets;
-   	$tweet->user_id = auth()->user()->id;
-    $tweet->tweet_text = $request->input('tweet_text');
-    $tweet->photo_id = $photo->id;
-   	$tweet->like_cnt = 0;
-   	$tweet->reply_cnt = 0;
-   	$tweet->photo = $newfilename;
-   	$tweet->time_posted = now();
-   	$tweet->save();
+			// Create new filename
+			$newfilename = $filename . '_' . time() . '.' . $extension;
 
-   	return redirect('/home')->with('success', 'Photo Uploaded');
+			// Upload image
+			$path = $request->file('photo')->storeAs('public/Photos/', $newfilename);
 
-    }
+	
+		}
 
+
+
+
+		
+		if ($request->input('tweet_text') != null) {
+
+			//store photo
+			$photo = new Photo;
+			$photo->user_id = auth()->user()->id;
+			$photo->tweet_text = $request->input('tweet_text');
+			$photo->photo = $newfilename;
+			$photo->save();
+
+			// store tweets
+			$tweet = new Tweets;
+			$tweet->user_id = auth()->user()->id;
+			$tweet->tweet_text = $request->input('tweet_text');
+			$tweet->photo_id = $photo->id;
+			$tweet->like_cnt = 0;
+			$tweet->reply_cnt = 0;
+			$tweet->photo = $newfilename;
+			$tweet->time_posted = now();
+			$tweet->save();
+
+			return redirect('/home')->with('success', 'Photo Uploaded');
+		} else {
+			return redirect('/home')->with('unsuccess', 'text required');
+		}
+	}
 }

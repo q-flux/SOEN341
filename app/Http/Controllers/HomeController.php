@@ -78,7 +78,7 @@ class HomeController extends Controller
         if ($file) // was file retrieved from the request?
             {
                 // then we store
-                Storage::disk('local')->put($filename, File::get($file));
+                Storage::disk('public')->put($filename, File::get($file));
             }
         return redirect('/home'); // redirect back to home
     }
@@ -86,21 +86,25 @@ class HomeController extends Controller
     // this method gets user image when the home page is loaded
     public function getUserImage($filename)
     {
-        $file = Storage::disk('local')->get($filename);
+        $file = Storage::disk('public')->get($filename);
         return new Response($file, 200);
-    }
+    }   
 
     // this method creates a new tweet
     public function create(Request $request)
     {
-        $tweet = Tweets::create([
-            'user_id' => Auth::user()->id,
-            'like_cnt' => 0,
-            'reply_cnt' => 0,
-            'tweet_text' => $request->input('tweet'),
-            'time_posted' => now(),
-        ]);
-        return redirect('/home');
+        if ($request->input('tweet') != null)
+        {
+            $tweet = Tweets::create([
+                'user_id' => Auth::user()->id,
+                'like_cnt' => 0,
+                'reply_cnt' => 0,
+                'tweet_text' => $request->input('tweet'),
+                'time_posted' => now(),
+            ]);
+           
+        }
+        return redirect()->back();
     }
 
     // this method deletes the tweet based on the ID
@@ -110,6 +114,7 @@ class HomeController extends Controller
         $tweet->delete();
         return redirect()->back()->with('success', 'Tweet Deleted');
     }
+
     public function deletePhoto($id)
     {
         $tweet = Tweets::find($id);
@@ -117,7 +122,6 @@ class HomeController extends Controller
         if(Storage::delete('public/photos/'.$photo->photo)){
           $photo->delete();
         }
-        //$photo->delete();
         $tweet->delete();
         return redirect()->back()->with('success', 'Tweet Deleted');
     }
@@ -153,6 +157,7 @@ class HomeController extends Controller
       return $followingArray;
     }
 
+    // this method gets the follower list
     public static function getFollowersList()
     {
       $user = Auth::user()->id;
@@ -169,6 +174,7 @@ class HomeController extends Controller
       return $followersArray;
     }
 
+    // this method shows the followers count
     public static function getFollowersCount()
     {
       $user = Auth::user()->id;
@@ -176,6 +182,7 @@ class HomeController extends Controller
       return sizeof($f_id);
     }
 
+    // this method gets the following count
     public static function getFollowingCount()
     {
       $user = Auth::user()->id;

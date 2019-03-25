@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            @if (Storage::disk('local')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
+            @if (Storage::disk('public')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
             <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-responsive"
                 style="width: 100%;"> 
             @endif
@@ -17,19 +17,13 @@
                 <label style="float:right" class="image-input" for="image"> Upload </label> 
             </form>
             <div class="clearfix"></div>
-
-
-
             <hr>
-
-
             <div class="container">
                 @include('inc.messages')
 
                 <div class="panel panel-default">
                     @if(count($listings)) @foreach($listings as $listing)
                     <div class="panel-heading">
-
                         <span class="pull-right">
                         </span> @endforeach @else
                         <div class="panel-heading">
