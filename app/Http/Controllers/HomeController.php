@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     public function getDate($array)
     {
-        $dates;
+        // $dates;
         foreach ($array as $key => $arr) {
             $dates[$key] = $arr->time_posted;
         };

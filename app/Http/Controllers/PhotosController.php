@@ -74,4 +74,9 @@ class PhotosController extends Controller
 			return redirect('/home')->with('unsuccess', 'text required');
 		}
 	}
+	public function show($id){
+		$photo = Photo::find($id);
+		return view('photos.showphoto')->with('photo', $photo);
+	  }
+  
 }

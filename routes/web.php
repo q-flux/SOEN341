@@ -60,4 +60,4 @@ Route::resource('listings', 'ListingsController');
 Route::get('/home/Photos/create', 'PhotosController@create');
 Route::post('/home/Photos/store', 'PhotosController@store');
 Route::get('/home/{id}', 'HomeController@show');
-
+Route::get('/photos/{id}', 'PhotosController@show');
