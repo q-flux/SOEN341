@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Tweets;
 use App\User;
 use App\Like;
@@ -167,6 +168,33 @@ class TweetsTest extends TestCase
         $this->assertEquals(302, $responseDelete->status());
 
         $this->assertEquals(0, Tweets::all()->count());
+
+    }
+
+    /** @test 
+     * Test SearchController@search
+     * 
+    */
+    public function search_algorithm_test()
+    {
+        //Arrange
+        $user = new User();
+        $user->name = "testUser_searchAlgorithm_1";
+        $user->email = "testUser_searchAlgorithm_1@mail.com";
+        $user->password = "password";
+        $user->save();
+
+        // $request = new Request();
+        // $request->data = "testUser";
+        // $output = app('App\Http\Controllers\SearchController')->search($request);
+
+        //Act
+        $response = $this->call('GET', '/search', array("testUser"));
+        
+        //Assert
+        $response->assertSuccessful();
+
+        
 
     }
 
