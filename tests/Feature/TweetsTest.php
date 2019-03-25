@@ -213,21 +213,23 @@ class TweetsTest extends TestCase
 //   }
 
   /** @test*/
-//   public function search_other_user()
-//   {
-//     $user1 = factory(User::class)->create([
-//         'biography' => 'default biography'
-//     ]);
-//     $user2 = factory(User::class)->create([
-//         'biography' => 'default biography'
-//     ]);
-//     $this->actingAs($user1);
+   public function search_other_user()
+  {
+     $user1 = factory(User::class)->create([
+         'biography' => 'default biography'
+     ]);
+     $user2 = factory(User::class)->create([
+         'biography' => 'default biography'
+     ]);
+     $this->actingAs($user1);
 
-//       $response = $this->call('search', $user2);
+      $response = $this->call('search', $user2);
 
-//       $response = $this->call('GET', '/otherUser');
+          $response->assertRedirect(
+            '/otherUser'
+            );
 
-//       $this->assertEquals(200, $response->status());
 
-//   }
+
+  }
 }
