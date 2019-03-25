@@ -25,7 +25,7 @@ class PhotosController extends Controller
 
 
 		// check whether photo exists
-		if ($request->file('photo')) {
+		if ($request->file('photo') && $request->input('tweet_text') != null) {
 
 			$wholeFilename = $request->file('photo')->getClientOriginalName();
 			// Get just the filename
@@ -42,16 +42,6 @@ class PhotosController extends Controller
 			// Upload image
 			$path = $request->file('photo')->storeAs('public/Photos/', $newfilename);
 
-	
-		}
-
-
-
-
-		
-		if ($request->input('tweet_text') != null) {
-
-			//store photo
 			$photo = new Photo;
 			$photo->user_id = auth()->user()->id;
 			$photo->tweet_text = $request->input('tweet_text');
@@ -68,10 +58,11 @@ class PhotosController extends Controller
 			$tweet->photo = $newfilename;
 			$tweet->time_posted = now();
 			$tweet->save();
-
-			return redirect('/home')->with('success', 'Photo Uploaded');
-		} else {
-			return redirect('/home')->with('unsuccess', 'text required');
+	
+		}
+		else {
+			$this->validate($request, ['tweet_text' => 'required']);
+			$this->validate($request, ['photo' => 'required']);
 		}
 	}
 	public function show($id){

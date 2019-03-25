@@ -105,6 +105,7 @@ class HomeController extends Controller
            
         }
         return redirect()->back();
+      
     }
 
     // this method deletes the tweet based on the ID
