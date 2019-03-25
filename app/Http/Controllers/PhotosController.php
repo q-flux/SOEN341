@@ -58,7 +58,7 @@ class PhotosController extends Controller
 			$tweet->photo = $newfilename;
 			$tweet->time_posted = now();
 			$tweet->save();
-	
+			return redirect('/home')->with('success', 'Photo Uploaded');
 		}
 		else {
 			$this->validate($request, ['tweet_text' => 'required']);
