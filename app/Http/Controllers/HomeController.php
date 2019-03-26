@@ -101,11 +101,9 @@ class HomeController extends Controller
                 'reply_cnt' => 0,
                 'tweet_text' => $request->input('tweet'),
                 'time_posted' => now(),
-            ]);
-           
+            ]);  
         }
-        return redirect()->back();
-      
+        return redirect()->back(); 
     }
 
     // this method deletes the tweet based on the ID

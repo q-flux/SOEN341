@@ -65,6 +65,7 @@ class PhotosController extends Controller
 			$this->validate($request, ['photo' => 'required']);
 		}
 	}
+	
 	public function show($id){
 		$photo = Photo::find($id);
 		return view('photos.showphoto')->with('photo', $photo);

@@ -101,7 +101,6 @@ class TweetsTest extends TestCase
             '/'
         );
         $this->assertEquals(302, $response->status());
-
     }
 
     /** @test */
@@ -119,7 +118,6 @@ class TweetsTest extends TestCase
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(1, Tweets::all()->count());
-
     }
 
     /** @test */
@@ -162,44 +160,43 @@ class TweetsTest extends TestCase
 
         $this->assertEquals(1, Tweets::all()->count());
 
-        $responseDelete = $this->call('POST','/delete/'.$user->id);
+        $responseDelete = $this->call('POST', '/delete/' . $user->id);
 
         $this->assertEquals(302, $responseDelete->status());
 
         $this->assertEquals(0, Tweets::all()->count());
-
     }
 
     /** @test */
-//   public function user_can_edit()
-//   {
-//     $user1 = factory(User::class)->create([
-//         'biography' => 'default biography'
-//     ]);
+    //   public function user_can_edit()
+    //   {
+    //     $user1 = factory(User::class)->create([
+    //         'biography' => 'default biography'
+    //     ]);
 
-//     $this->actingAs($user1);
+    //     $this->actingAs($user1);
 
-//     $response = $this->call('edit', 'biography', 'new_bio');
+    //     $response = $this->call('edit', 'biography', 'new_bio');
 
-//     $this->assertEquals(302, $response->status());
-//   }
+    //     $this->assertEquals(302, $response->status());
+    //   }
 
-  /** @test*/
-//   public function search_other_user()
-//   {
-//     $user1 = factory(User::class)->create([
-//         'biography' => 'default biography'
-//     ]);
-//     $user2 = factory(User::class)->create([
-//         'biography' => 'default biography'
-//     ]);
-//     $this->actingAs($user1);
+    /** @test*/
+    //   public function search_other_user()
+    //   {
+    //     $user1 = factory(User::class)->create([
+    //         'biography' => 'default biography'
+    //     ]);
+    //     $user2 = factory(User::class)->create([
+    //         'biography' => 'default biography'
+    //     ]);
+    //     $this->actingAs($user1);
 
-//       $response = $this->call('search', $user2);
+    //       $response = $this->call('search', $user2);
 
-//       $response = $this->call('GET', '/otherUser');
+    //       $response = $this->call('GET', '/otherUser');
 
-//       $this->assertEquals(200, $response->status());
+    //       $this->assertEquals(200, $response->status());
 
-//   }
+    //   }
 }

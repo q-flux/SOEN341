@@ -11,7 +11,8 @@ use App\Listing;
 
 class OtherUserController extends Controller
 {
-    public function searchOther($id){
+    public function searchOther($id)
+    {
         $tweets = Tweets::where("user_id", $id)->get();
         $username = users::where('id', $id)->first()->name;
         $userID = $id;
@@ -23,8 +24,10 @@ class OtherUserController extends Controller
 
 
         // $user = DB::table('users')->where('id', $id)->first();
-        $output = array($tweets, $username, $userID, $following, $biography,
-                        $followerCount, $followingCount, count($tweets));
+        $output = array(
+            $tweets, $username, $userID, $following, $biography,
+            $followerCount, $followingCount, count($tweets)
+        );
 
         // $dates = $this->getDate($tweets);
         return view('otherUser', ['output' => $output])->with('listings', $listings); //, 'like' => $tweetsLike

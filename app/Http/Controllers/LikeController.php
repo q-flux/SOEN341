@@ -11,31 +11,31 @@ use App\Like;
 
 class LikeController extends Controller
 {
-    
-        public function LikeTweet($id){
-           
-            $userLikedTweet = Auth::user()->id;
-     
 
-            $likes = Like::where('tweet_id', $id)->where('user_id',$userLikedTweet)->count();
+    public function LikeTweet($id)
+    {
 
-  
-            if ($likes){
-                Like::where('tweet_id', $id)->delete();
-                Tweets::where("id", $id)->update([
-                    'like_cnt'=> DB::raw('like_cnt-1')
-                ]);
-                return redirect()->back();
-            } 
-            else {
-                Like::create([
-                    'user_id' => Auth::user()->id,
-                    'tweet_id' => $id
-                ]); 
-                Tweets::where("id", $id)->update([
-                    'like_cnt'=> DB::raw('like_cnt+1')
-                ]);
-                return redirect()->back();
-            }      
+        $userLikedTweet = Auth::user()->id;
+
+
+        $likes = Like::where('tweet_id', $id)->where('user_id', $userLikedTweet)->count();
+
+
+        if ($likes) {
+            Like::where('tweet_id', $id)->delete();
+            Tweets::where("id", $id)->update([
+                'like_cnt' => DB::raw('like_cnt-1')
+            ]);
+            return redirect()->back();
+        } else {
+            Like::create([
+                'user_id' => Auth::user()->id,
+                'tweet_id' => $id
+            ]);
+            Tweets::where("id", $id)->update([
+                'like_cnt' => DB::raw('like_cnt+1')
+            ]);
+            return redirect()->back();
+        }
     }
 }
