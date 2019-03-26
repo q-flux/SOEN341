@@ -23,7 +23,7 @@ class LikeController extends Controller
 
 
         if ($likes) {
-            Like::where('tweet_id', $id)->delete();
+            Like::where('tweet_id', $id)->where('user_id',$userLikedTweet)->delete();
             Tweets::where("id", $id)->update([
                 'like_cnt' => DB::raw('like_cnt-1')
             ]);

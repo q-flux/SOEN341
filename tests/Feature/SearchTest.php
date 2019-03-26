@@ -30,7 +30,10 @@ class SearchTest extends TestCase
         $response->assertSuccessful();
     }
 
-    /** @test */
+    /** @test 
+     * 
+     * 
+    */
     public function search_other_user()
     {
         $user1 = factory(User::class)->create([

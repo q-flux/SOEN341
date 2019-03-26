@@ -22,7 +22,7 @@ class FollowController extends Controller
         $follow = Follow::where('follow_id', $id)->where('user_id', Auth::user()->id)->count();
         if ($follow){
             // has never been followed yet
-            Follow::where('follow_id', $id)->delete();
+            Follow::where('follow_id', $id)->where('user_id', Auth::user()->id)->delete();
             return redirect()->back();
         } else {
             Follow::create([
