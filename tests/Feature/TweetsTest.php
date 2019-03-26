@@ -168,10 +168,7 @@ class TweetsTest extends TestCase
         $this->assertEquals(0, Tweets::all()->count());
     }
 
-    /** @test 
-     * Test SearchController@search
-     * 
-    */
+    /** @test   */
     public function search_algorithm_test()
     {
         //Arrange
@@ -180,15 +177,23 @@ class TweetsTest extends TestCase
         $user->email = "testUser_searchAlgorithm_1@mail.com";
         $user->password = "password";
         $user->save();
-
-        // $request = new Request();
-        // $request->data = "testUser";
-        // $output = app('App\Http\Controllers\SearchController')->search($request);
-
-        //Act
         $response = $this->call('GET', '/search', array("testUser"));
 
         //Assert
+        $response->assertSuccessful();
+    }
+
+    /** @test */
+    public function search_other_user()
+    {
+        $user1 = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
+        $user2 = factory(User::class)->create([
+            'biography' => 'default biography'
+        ]);
+        $this->actingAs($user1);
+        $response = $this->call('GET', '/searchOther/' . $user2->id);
         $response->assertSuccessful();
     }
 }

@@ -41,23 +41,40 @@ Route::post('/edit', 'HomeController@edit');
 // add a profile image
 Route::post('/edit',[
   'uses' => 'HomeController@addImage',
-  'as' => 'account.save'
+  'as' =>   'account.save'
 ]);
-
 
 Route::get('/edit/{filename}',[
   'uses' => 'HomeController@getUserImage',
   'as' => 'account.image'
 ]);
+
+// returns the user's profile page
 Route::get('/home', 'HomeController@index')->name('home');
+
+// creates a new tweet 
 Route::post('/tweet', 'HomeController@create')->name('create');
+
+// deletes a tweet with specific id
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
+
+// delete a photo with specific id
 Route::post('/deletePhoto/{id}', 'HomeController@deletePhoto')->name('deletePhoto');
+
+// follows a user with id
 Route::get('/follow/{id}', 'FollowController@Follow');
 
+// gets user's profile information
 Route::resource('listings', 'ListingsController');
 
+// used for creating an image
 Route::get('/home/Photos/create', 'PhotosController@create');
+
+// used for storing an image
 Route::post('/home/Photos/store', 'PhotosController@store');
+
+// used for getting the profile of specific user
 Route::get('/home/{id}', 'HomeController@show');
+
+// used for getting specific photo id
 Route::get('/photos/{id}', 'PhotosController@show');
