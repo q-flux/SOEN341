@@ -17,7 +17,8 @@ class CreateTweetsTable extends Migration
             $table->increments('id');
             $table->bigInteger('user_id');
             $table->longText('tweet_text');
-            $table->timestamp('time_posted');
+            $table->timestamp('published_at')->nullable();
+            // $table->dateTime('published_at');
             $table->bigInteger('like_cnt');
             $table->bigInteger('reply_cnt');
             $table->string('photo')->nullable();

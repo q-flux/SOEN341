@@ -7,6 +7,10 @@
             @if (Storage::disk('public')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
             <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-responsive"
                 style="width: 100%;"> 
+            @else
+            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre"
+                style="
+                width: 100%;">
             @endif
 
             <br>
@@ -185,7 +189,7 @@
                             <tbody>
                                 @foreach ($tweets as $tweet)
                                 <thead>
-                                    <th>{{$tweet->time_posted}}</th>
+                                    <th>{{$tweet->published_at}}</th>
                                     <th>&nbsp;</th>
                                 </thead>
                                     <tr>

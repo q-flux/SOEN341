@@ -100,7 +100,7 @@ class HomeController extends Controller
                 'like_cnt' => 0,
                 'reply_cnt' => 0,
                 'tweet_text' => $request->input('tweet'),
-                'time_posted' => now(),
+                'published_at' => now(),
             ]);  
         }
         return redirect()->back(); 

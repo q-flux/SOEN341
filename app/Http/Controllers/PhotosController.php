@@ -56,7 +56,8 @@ class PhotosController extends Controller
 			$tweet->like_cnt = 0;
 			$tweet->reply_cnt = 0;
 			$tweet->photo = $newfilename;
-			$tweet->time_posted = now();
+			
+			$tweet->published_at = now();
 			$tweet->save();
 			return redirect('/home')->with('success', 'Photo Uploaded');
 		}
