@@ -213,6 +213,7 @@ class TweetsTest extends TestCase
 //   }
 
   /** @test*/
+  /*
    public function search_other_user()
   {
      $user1 = factory(User::class)->create([
@@ -228,8 +229,6 @@ class TweetsTest extends TestCase
           $response->assertRedirect(
             '/otherUser'
             );
-
-
-
   }
+  */
 }
