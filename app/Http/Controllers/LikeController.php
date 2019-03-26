@@ -11,7 +11,8 @@ use App\Like;
 
 class LikeController extends Controller
 {
-
+    // this method likes the tweet if the current user hasn't liked the tweet before
+    // if the user already liked the tweet, it unlikes the tweet
     public function LikeTweet($id)
     {
 

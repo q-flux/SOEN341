@@ -10,6 +10,12 @@ use App\Follow;
 
 class FollowController extends Controller
 {
+    /**
+     * Follows another user
+     *
+     * @param  int
+     * @return void
+     */
     public function Follow($id){
         //$id is the ID  of the user to follow
 
@@ -29,27 +35,3 @@ class FollowController extends Controller
     }
     
 }
-
-// $userLikedTweet = Auth::user()->id;
-
-
-// $likes = Like::where('tweet_id', $id)->where('user_id',$userLikedTweet)->count();
-
-
-// if ($likes){
-//     Like::where('tweet_id', $id)->delete();
-//     Tweets::where("id", $id)->update([
-//         'like_cnt'=> DB::raw('like_cnt-1')
-//     ]);
-//     return redirect()->back();
-// }
-// else {
-//     Like::create([
-//         'user_id' => Auth::user()->id,
-//         'tweet_id' => $id
-//     ]);
-//     Tweets::where("id", $id)->update([
-//         'like_cnt'=> DB::raw('like_cnt+1')
-//     ]);
-//     return redirect()->back();
-// }

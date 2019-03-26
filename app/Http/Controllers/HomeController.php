@@ -114,6 +114,7 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Tweet Deleted');
     }
 
+    // this method deletes photo based on id
     public function deletePhoto($id)
     {
         $tweet = Tweets::find($id);
@@ -140,6 +141,7 @@ class HomeController extends Controller
         return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
     }
 
+    // this method gets the list that the current user is following
     public static function getFollowingList()
     {
       $user = Auth::user()->id;

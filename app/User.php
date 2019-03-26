@@ -31,10 +31,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
-    /*
-        public function likes(){
-          return $this->hasMany('App\likes');
-        }*/
 
     // Add one to many relationship
     public function listings(){

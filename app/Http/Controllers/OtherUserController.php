@@ -11,6 +11,7 @@ use App\Listing;
 
 class OtherUserController extends Controller
 {
+    // this method returns the profile for other user
     public function searchOther($id)
     {
         $tweets = Tweets::where("user_id", $id)->get();
@@ -23,6 +24,6 @@ class OtherUserController extends Controller
         $listings = Listing::where("user_id", $id)->get();
         $output = array($tweets, $username, $userID, $following, $biography,
                         $followerCount, $followingCount, count($tweets));
-        return view('otherUser', ['output' => $output])->with('listings', $listings); //, 'like' => $tweetsLike
+        return view('otherUser', ['output' => $output])->with('listings', $listings); // returns other user profile with correct information
     }
 }
