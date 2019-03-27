@@ -145,7 +145,7 @@
                                 <i class="fa fa-plus"></i> Tweet
                             </button>
 
-                            <a href="home/Photos/create" class="btn btn-success btn-xs">Tweet Image</a></span>
+                            <a href="home/Photos/create" class="btn btn-primary btn-xs">Tweet Image</a></span>
 
                             <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
                             View Feed
