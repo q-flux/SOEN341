@@ -6,17 +6,9 @@
         <div class="col-md-4">
 
 
-  
-            @if (Storage::disk('public')->has($output[1].'-'.$output[2].'.jpg'))
-            <img src="{{ route('account.image', ['filename'=>$output[1].'-'.$output[2].'.jpg'])}}" class="img-responsive"
-                style="width: 100%;"> 
-            @else
-            <hr>
             <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre"
                 style="
                 width: 100%;">
-            @endif
-
             <div class="container">
 
                 @if(count($listings))
@@ -59,49 +51,53 @@
                     </div>
                 </div>
             </div>
-
-            @if (count($output[0]) > 0) 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Your Posts
-                </div>
-                <div class="panel-body">
-                    <table class="table table-striped task-table">
-                        <tbody>
-                            @foreach ($output[0] as $tweet)
-                            <thead>
-                                <th>{{$tweet->published_at}}</th>
-                                <th>&nbsp;</th>
-                            </thead>
-                            <tr>
-                                <!-- Task Name -->
-                                <td class="table-text">
-                                    <div>{{ $tweet->tweet_text }}</div>
-                                </td>
-                            </tr>
-                            @if ( !empty ( $tweet->photo ) )
-                            <tr>
-                                <td>
-                                    <br>
-                                    <a href="/photos/{{$tweet->id}}">
-                                                <img class="thumbnail" src="/storage/photos/{{$tweet->photo}}">
-                                            </a>
-                                </td>
-                            </tr>
-                            @endif
-                            <tr>
-                                <td>
-                                    <a class="btn btn-primary" id="like" href="/like/{{$tweet->id}}" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
-                                            {{ $tweet->like_cnt }} Like
-                                        </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            @endif
+            
+            @foreach ($followers as $follower)
+                @if($follower->follow_id == $output[2])
+                    @if (count($output[0]) > 0) 
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Your Posts
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped task-table">
+                                    <tbody>
+                                        @foreach ($output[0] as $tweet)
+                                        <thead>
+                                            <th>{{$tweet->time_posted}}</th>
+                                            <th>&nbsp;</th>
+                                        </thead>
+                                        <tr>
+                                            <!-- Task Name -->
+                                            <td class="table-text">
+                                                <div>{{ $tweet->tweet_text }}</div>
+                                            </td>
+                                        </tr>
+                                        @if ( !empty ( $tweet->photo ) )
+                                        <tr>
+                                            <td>
+                                                <br>
+                                                <a href="/photos/{{$tweet->id}}">
+                                                            <img class="thumbnail" src="/storage/photos/{{$tweet->photo}}">
+                                                        </a>
+                                            </td>
+                                        </tr>
+                                        @endif
+                                        <tr>
+                                            <td>
+                                                <a class="btn btn-primary" id="like" href="/like/{{$tweet->id}}" class="btn btn-default" data-tweetID="{{ $tweet->id }}">
+                                                        {{ $tweet->like_cnt }} Like
+                                                    </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endif
+                @endif
+            @endforeach
         </div>
     </div>
 </div>

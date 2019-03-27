@@ -22,8 +22,12 @@ class OtherUserController extends Controller
         $followerCount = sizeof(Follow::where('follow_id', $id)->get());
         $followingCount = sizeof(Follow::where('user_id', $id)->get());
         $listings = Listing::where("user_id", $id)->get();
+        
+        $followers = Follow::where("user_id", Auth::user()->id)->get();
+
         $output = array($tweets, $username, $userID, $following, $biography,
                         $followerCount, $followingCount, count($tweets));
-        return view('otherUser', ['output' => $output])->with('listings', $listings); // returns other user profile with correct information
+        
+        return view('otherUser', ['output' => $output])->with('listings', $listings)->with('followers', $followers); // returns other user profile with correct information
     }
 }
