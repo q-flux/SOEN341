@@ -126,16 +126,15 @@
                         </div>
                         <script>
                             var el;
-
-                function countCharacters() {
-                  var textEntered, countRemaining, counter;
-                  textEntered = document.getElementById('tweet-name').value;
-                  counter = (140 - (textEntered.length));
-                  countRemaining = document.getElementById('chars');
-                  countRemaining.textContent = counter;
-                }
-                el = document.getElementById('tweet-name');
-                el.addEventListener('keyup', countCharacters, false);
+                            function countCharacters() {
+                              var textEntered, countRemaining, counter;
+                              textEntered = document.getElementById('tweet-name').value;
+                              counter = (140 - (textEntered.length));
+                              countRemaining = document.getElementById('chars');
+                              countRemaining.textContent = counter;
+                            }
+                            el = document.getElementById('tweet-name');
+                            el.addEventListener('keyup', countCharacters, false);
                         </script>
                     </div>
 
@@ -146,7 +145,7 @@
                                 <i class="fa fa-plus"></i> Tweet
                             </button>
 
-                            <a href="home/Photos/create" class="btn btn-success btn-xs">Tweet Image</a></span>
+                            <a href="home/Photos/create" class="btn btn-primary btn-xs">Tweet Image</a></span>
 
                             <button class="btn btn-primary" type="button" onclick="window.location='{{ url('/feed') }}'">
                             View Feed
