@@ -22,20 +22,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/ajax.js"></script>
-    
-    <script>    
-        // this is for search bar functionality
+
+    <!--Script is for search bar functionality -->
+    <script>
         $(document).on('keyup', '#search', function() {
             $value = $(this).val();
             $search  = '{{URL('search')}}';
             setRequest($search,$value).done(function(data){
-                $('#table tbody').html(data);    
+                $('#table tbody').html(data);
             })
         })
         $(document).click(function(){
             $('#table tbody').html('');
         })
-           
     </script>
 
     <style>

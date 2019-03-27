@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 
 <div class="container">
@@ -6,7 +6,7 @@
         <div class="col-md-4">
             @if (Storage::disk('public')->has(Auth::user()->name.'-'.Auth::user()->id.'.jpg'))
             <img src="{{ route('account.image', ['filename'=> Auth::user()->name.'-'.Auth::user()->id.'.jpg'])}}" class="img-responsive"
-                style="width: 100%;"> 
+                style="width: 100%;">
             @else
             <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png" class="img-rounded img-responsive" alt="Cinque Terre"
                 style="
@@ -18,7 +18,7 @@
                 {{ csrf_field() }}
                 <br>
                 <input onChange="this.form.submit()" style="display:none" type="file" name="image" class="form-control-file" id="image">
-                <label style="float:right" class="image-input" for="image"> Upload </label> 
+                <label style="float:right" class="image-input" for="image"> Upload </label>
             </form>
             <div class="clearfix"></div>
             <hr>
@@ -32,7 +32,7 @@
                         </span> @endforeach @else
                         <div class="panel-heading">
                             <span class="pull-right">
-                            </span> 
+                            </span>
                     @endif
                             <div class="panel-body">
                                 @if(count($listings))
@@ -56,6 +56,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Modal -->
                     <div class="modal fade" id="EditProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

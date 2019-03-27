@@ -51,10 +51,10 @@
                     </div>
                 </div>
             </div>
-            
+
             @foreach ($followers as $follower)
                 @if($follower->follow_id == $output[2])
-                    @if (count($output[0]) > 0) 
+                    @if (count($output[0]) > 0)
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Your Posts

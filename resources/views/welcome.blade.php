@@ -11,8 +11,8 @@
 
         <!-- Styles -->
         <style>
-
-            html, body {
+            html, body
+            {
                 background-color: #fff;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
@@ -23,39 +23,46 @@
                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23222222' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23444444' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23666666' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23888888' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23aaaaaa' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23cccccc' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
 
                 background-attachment:   fixed;
-                background-size: cover; 
+                background-size: cover;
 
             }
 
-            .full-height {
+            .full-height
+            {
                 height: 100vh;
             }
 
-            .flex-center {
+            .flex-center
+            {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
 
-            .position-ref {
+            .position-ref
+            {
                 position: relative;
             }
 
-            .top-right {
+            .top-right
+            {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
 
-            .content {
+            .content
+            {
                 text-align: center;
             }
 
-            .title {
+            .title
+            {
                 font-size: 84px;
             }
 
-            .links > a {
+            .links > a
+            {
                 color: #636b6f;
                 padding: 0 25px;
                 font-size: 13px;
@@ -65,10 +72,12 @@
                 text-transform: uppercase;
             }
 
-            .m-b-md {
+            .m-b-md
+            {
                 margin-bottom: 30px;
             }
-            .color-white{
+            .color-white
+            {
                 color:white !important;
             }
         </style>

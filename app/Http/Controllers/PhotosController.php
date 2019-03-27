@@ -9,13 +9,21 @@ use App\users;
 
 class PhotosController extends Controller
 {
-	public function index()
-	{ }
+	public function index(){}
 
 	public function create()
 	{
 		return view('photos.create');
 	}
+
+	/**
+	*The "store" fucntion does the following in order:
+	*Check whether photo exists
+	*Get the extension
+	*Create a new filename
+	*Upload the image
+	*Store tweets with photo
+	*/
 
 	public function store(Request $request)
 	{
@@ -23,23 +31,16 @@ class PhotosController extends Controller
 			'photo' => 'image|max:1999'
 		]);
 
-
-		// check whether photo exists
 		if ($request->file('photo') && $request->input('tweet_text') != null) {
 
 			$wholeFilename = $request->file('photo')->getClientOriginalName();
-			// Get just the filename
+
 			$filename = pathinfo($wholeFilename, PATHINFO_FILENAME);
 
-
-
-			// Get extension
 			$extension = $request->file('photo')->getClientOriginalExtension();
 
-			// Create new filename
 			$newfilename = $filename . '_' . time() . '.' . $extension;
 
-			// Upload image
 			$path = $request->file('photo')->storeAs('public/Photos/', $newfilename);
 
 			$photo = new Photo;
@@ -48,7 +49,6 @@ class PhotosController extends Controller
 			$photo->photo = $newfilename;
 			$photo->save();
 
-			// store tweets
 			$tweet = new Tweets;
 			$tweet->user_id = auth()->user()->id;
 			$tweet->tweet_text = $request->input('tweet_text');
@@ -56,20 +56,23 @@ class PhotosController extends Controller
 			$tweet->like_cnt = 0;
 			$tweet->reply_cnt = 0;
 			$tweet->photo = $newfilename;
-			
+
 			$tweet->published_at = now();
 			$tweet->save();
 			return redirect('/home')->with('success', 'Photo Uploaded');
 		}
-		else {
+
+		else
+		{
 			$this->validate($request, ['tweet_text' => 'required']);
 			$this->validate($request, ['photo' => 'required']);
 		}
 	}
-	
-	public function show($id){
+
+	public function show($id)
+	{
 		$photo = Photo::find($id);
 		return view('photos.showphoto')->with('photo', $photo);
-	  }
-  
+	 }
+
 }

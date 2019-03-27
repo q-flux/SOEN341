@@ -8,17 +8,23 @@ use App\User;
 
 class SearchController extends Controller
 {
-    // this method is accepts ajax request of keyword and searches all users that are matches the keyword
+  /** The "Search" method takes an ajax request as a keyword and searches for a matching user
+  *   If there is a similar user it displays a dropdown of all similar users
+  */
     public function search(Request $request)
     {
-        if ($request->ajax()) {
+        if ($request->ajax())
+         {
             $output = "";
-            if (!empty($request->data)) {
-                $users = User::where('name', 'LIKE', '%' . $request->data . "%")->get(); //searching user "like" the keyword
-
+            if (!empty($request->data))
+             {
+                $users = User::where('name', 'LIKE', '%' . $request->data . "%")->get();
+                
                 if ($users) {
-                    foreach ($users as $key => $user) {
-                        if ($user->id != Auth::user()->id) {
+                    foreach ($users as $key => $user)
+                     {
+                        if ($user->id != Auth::user()->id)
+                        {
                             $id = $user->id;
                             $output .= '<tr>' . '<td data-userId=' . $id . '> <a class="dropdown-item" href="/searchOther/' . $id . '">'  . $user->name . '</a></td> </tr>';
                         }

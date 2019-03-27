@@ -8,10 +8,14 @@ class Photo extends Model
 {
     public $timestamps = false;
     protected $fillable = array('user_id', 'tweet_text', 'photo');
-    public function user(){
+
+    public function user()
+    {
     	return $this->belongsTo('App\User');
     }
-    public function tweet(){
+    
+    public function tweet()
+    {
     	return $this->belongsTo('App\Tweets');
     }
 }

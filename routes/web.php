@@ -15,30 +15,42 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// welcome page
+// Welcome page
 Route::get('/', function () {
     return view('welcome');
 });
 
-// feed page
+/** The following is a list of explanations for each route listed
+*   /feed:                Feed page
+*   /search:              Return results of the search
+*   /searchOther:         Return other user profile
+*   /like:                Likes a tweet
+*   /edit:                Edit biography and photos
+*   /home:                Returns the user's profile page
+*   /tweet:               Creates a new tweet
+*   /delete/id:           Deletes a tweet with specific id
+*   /deletePhoto/id:      Delete a photo with specific id
+*   /follow:              Follows a user with id
+*   'listings':           Gets user's profile information
+*   /home/Photos/create:  Used for creating an image
+*   /home/Photos/store:   Used for storing an image
+*   /home/id:             Used for getting the profile of specific user
+*   /photos/id:           Used for getting specific photo id
+*/
+
 Route::get('/feed','HomeController@feed');
 
-// authenticate middleware
+// Authenticate middleware
 Auth::routes();
 
-// return results of the search
 Route::get('/search','SearchController@search');
 
-// return other user prfile
 Route::get('/searchOther/{id}','OtherUserController@searchOther');
 
-// likes a tweet
 Route::get('/like/{id}', 'LikeController@LikeTweet');
 
-// edit biography
 Route::post('/edit', 'HomeController@edit');
 
-// add a profile image
 Route::post('/edit',[
   'uses' => 'HomeController@addImage',
   'as' =>   'account.save'
@@ -49,32 +61,22 @@ Route::get('/edit/{filename}',[
   'as' => 'account.image'
 ]);
 
-// returns the user's profile page
 Route::get('/home', 'HomeController@index')->name('home');
 
-// creates a new tweet 
 Route::post('/tweet', 'HomeController@create')->name('create');
 
-// deletes a tweet with specific id
 Route::post('/delete/{id}', 'HomeController@delete')->name('delete');
 
-// delete a photo with specific id
 Route::post('/deletePhoto/{id}', 'HomeController@deletePhoto')->name('deletePhoto');
 
-// follows a user with id
 Route::get('/follow/{id}', 'FollowController@Follow');
 
-// gets user's profile information
 Route::resource('listings', 'ListingsController');
 
-// used for creating an image
 Route::get('/home/Photos/create', 'PhotosController@create');
 
-// used for storing an image
 Route::post('/home/Photos/store', 'PhotosController@store');
 
-// used for getting the profile of specific user
 Route::get('/home/{id}', 'HomeController@show');
 
-// used for getting specific photo id
 Route::get('/photos/{id}', 'PhotosController@show');
