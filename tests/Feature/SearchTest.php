@@ -17,6 +17,7 @@ class SearchTest extends TestCase
 
     /** @test   
      * 
+     * @return void
     */
     public function search_algorithm_test()
     {
@@ -33,6 +34,10 @@ class SearchTest extends TestCase
     }
 
     /** @test 
+     * 
+     * this method test that user1 can go to user2 profile
+     * 
+     * @return void
     */
     public function search_other_user()
     {

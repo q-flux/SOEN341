@@ -96,15 +96,18 @@ class ListingTest extends TestCase
                 'bio' => "For testing",
                 ];
 
+        // add profile 2 to DB
         $profile2 = factory(Listing::class)->create([
             'name' => 'Rodrick'
         ]);
-
+        // check that DB has profile 2
         $this->assertDatabaseHas('listings', ['name' => 'Rodrick']);
 
-        // you are storing listing information
-        $response = $this->call('PUT', '/listings/'.$user->id, $profile1);
+        // you replace profile 2 with info from profile 1
+        $response = $this->call('PUT', '/listings/'.$profile2->id, $profile1);
         $response->assertStatus(302);
+
+        // check that DB now has profile 1 and not profile 2
         $this->assertDatabaseHas('listings', ['name' => 'kasra']);  
         $this->assertDatabaseMissing('listings', ['name' => 'Rodrick']);
     }

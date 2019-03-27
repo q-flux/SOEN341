@@ -86,59 +86,20 @@ class PostDeleteTweetTest extends TestCase
             'biography' => 'sdefault biography'
         ]);
 
-        $this->actingAs($user);
-        $tweetID = "0";
-        $tweet = ['id' => $tweetID, 'tweet' => 'hello'];
+        $this->actingAs($user); // user1 is authorized
+
+        $tweetID = '1'; // this autoincrementedID in DB
+        $tweet = ['tweet' => 'hello'];
         
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(1, Tweets::all()->count());
 
-
-        $responseDelete = $this->call('POST', '/delete/' . $tweetID);
+        $responseDelete = $this->call('POST', '/delete/'.$tweetID);
 
         $this->assertEquals(302, $responseDelete->status());
-
         // tweet count should be 0 after delete
         $this->assertEquals(0, Tweets::all()->count());
 
     }
-
-    // /** @test 
-    //  * 
-    //  * this method tests that unauthenticated user cannot delete tweet
-    //  * 
-    //  * @return void
-    //  * 
-    // */
-    // public function unauthenticated_user_cannot_delete_someone_tweet()
-    // {
-    //     $user = factory(User::class)->create([
-    //         'biography' => 'sdefault biography'
-    //     ]);
-        
-    //     $user2 = factory(User::class)->create([
-    //         'biography' => 'sdefault biography'
-    //     ]);
-
-    //     $this->actingAs($user);
-
-    //     $tweet = ['tweet' => 'hello'];
-
-    //     $response = $this->call('POST', '/tweet', $tweet);
-
-    //     $this->assertEquals(1, Tweets::all()->count());
-
-        
-
-    //     $responseDelete = $this->call('POST', '/delete/' . $user->id);
-
-    //     $this->actingAs($user2);
-
-    //     $this->assertEquals(302, $responseDelete->status());
-
-    //     // tweet count should be 0 after delete
-    //     $this->assertEquals(1, Tweets::all()->count());
-    // }
-
 }

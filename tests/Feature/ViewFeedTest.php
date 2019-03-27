@@ -32,8 +32,7 @@ class ViewFeedTest extends TestCase
     }
 
     /** @test 
-     * 
-     * 
+     *
      * 
      * @return void
       */
