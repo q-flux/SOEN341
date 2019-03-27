@@ -126,16 +126,15 @@
                         </div>
                         <script>
                             var el;
-
-                function countCharacters() {
-                  var textEntered, countRemaining, counter;
-                  textEntered = document.getElementById('tweet-name').value;
-                  counter = (140 - (textEntered.length));
-                  countRemaining = document.getElementById('chars');
-                  countRemaining.textContent = counter;
-                }
-                el = document.getElementById('tweet-name');
-                el.addEventListener('keyup', countCharacters, false);
+                            function countCharacters() {
+                              var textEntered, countRemaining, counter;
+                              textEntered = document.getElementById('tweet-name').value;
+                              counter = (140 - (textEntered.length));
+                              countRemaining = document.getElementById('chars');
+                              countRemaining.textContent = counter;
+                            }
+                            el = document.getElementById('tweet-name');
+                            el.addEventListener('keyup', countCharacters, false);
                         </script>
                     </div>
 
