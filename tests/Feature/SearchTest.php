@@ -15,7 +15,9 @@ class SearchTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @test   */
+    /** @test   
+     * 
+    */
     public function search_algorithm_test()
     {
         //Arrange
@@ -31,8 +33,6 @@ class SearchTest extends TestCase
     }
 
     /** @test 
-     * 
-     * 
     */
     public function search_other_user()
     {

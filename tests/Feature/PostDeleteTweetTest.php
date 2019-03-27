@@ -17,7 +17,12 @@ class PostDeleteTweetTest extends TestCase
 
 
 
-    /** @test */
+    /** @test 
+     * 
+     * this method tests that authenticated user can post a tweet
+     * 
+     * @return void
+    */
     public function authenticated_user_can_post_tweet()
     {
 
@@ -31,10 +36,15 @@ class PostDeleteTweetTest extends TestCase
 
         $response = $this->call('POST', '/tweet', $tweet);
 
+        // tweet count should be 1
         $this->assertEquals(1, Tweets::all()->count());
     }
 
-    /** @test */
+    /** @test 
+     * this method tests that unauthenticated user cannot post a tweet and is redirected to login
+     * 
+     * @return void
+    */
     public function unauthenticated_user_is_redirected_to_login_when_tweeting()
     {
 
@@ -49,7 +59,11 @@ class PostDeleteTweetTest extends TestCase
         );
     }
 
-    /** @test */
+    /** @test
+     * this method checks that unauthenticated user cannot post a tweet so tweet count should be 0
+     * 
+     * @return void
+     */
     public function unauthenticated_user_cannot_post_tweet()
     {
         $tweet = ['tweet' => 'hello'];
@@ -59,7 +73,13 @@ class PostDeleteTweetTest extends TestCase
         $this->assertEquals(0, Tweets::all()->count());
     }
 
-    /** @test */
+    /** @test 
+     * 
+     * this method tests that authenticated user can delete tweet
+     * 
+     * @return void
+     * 
+    */
     public function authenticated_user_delete_tweet()
     {
         $user = factory(User::class)->create([
@@ -67,17 +87,58 @@ class PostDeleteTweetTest extends TestCase
         ]);
 
         $this->actingAs($user);
-
-        $tweet = ['tweet' => 'hello'];
-
+        $tweetID = "0";
+        $tweet = ['id' => $tweetID, 'tweet' => 'hello'];
+        
         $response = $this->call('POST', '/tweet', $tweet);
 
         $this->assertEquals(1, Tweets::all()->count());
 
-        $responseDelete = $this->call('POST', '/delete/' . $user->id);
+
+        $responseDelete = $this->call('POST', '/delete/' . $tweetID);
 
         $this->assertEquals(302, $responseDelete->status());
 
+        // tweet count should be 0 after delete
         $this->assertEquals(0, Tweets::all()->count());
+
     }
+
+    // /** @test 
+    //  * 
+    //  * this method tests that unauthenticated user cannot delete tweet
+    //  * 
+    //  * @return void
+    //  * 
+    // */
+    // public function unauthenticated_user_cannot_delete_someone_tweet()
+    // {
+    //     $user = factory(User::class)->create([
+    //         'biography' => 'sdefault biography'
+    //     ]);
+        
+    //     $user2 = factory(User::class)->create([
+    //         'biography' => 'sdefault biography'
+    //     ]);
+
+    //     $this->actingAs($user);
+
+    //     $tweet = ['tweet' => 'hello'];
+
+    //     $response = $this->call('POST', '/tweet', $tweet);
+
+    //     $this->assertEquals(1, Tweets::all()->count());
+
+        
+
+    //     $responseDelete = $this->call('POST', '/delete/' . $user->id);
+
+    //     $this->actingAs($user2);
+
+    //     $this->assertEquals(302, $responseDelete->status());
+
+    //     // tweet count should be 0 after delete
+    //     $this->assertEquals(1, Tweets::all()->count());
+    // }
+
 }

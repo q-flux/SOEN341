@@ -15,7 +15,11 @@ class LoginRegisterTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @test */
+    /** @test
+     * 
+     * this method tests that user can view a login form
+     * @return void
+     */
     public function test_user_can_view_a_login_form()
     {
         $response = $this->get('/login');
@@ -23,7 +27,11 @@ class LoginRegisterTest extends TestCase
         $response->assertViewIs('auth.login');
     }
 
-    /** @test */
+    /** @test
+     * this method tests that user can view register form 
+     * 
+     * @return void
+     */
     public function test_user_can_view_a_register_form()
     {
         $response = $this->get('/register');
@@ -31,7 +39,11 @@ class LoginRegisterTest extends TestCase
         $response->assertViewIs('auth.register');
     }
 
-    /** @test */
+    /** @test 
+     * this method tests that user cannot login with incorrect password
+     * 
+     * @return void
+    */
     public function test_user_cannot_login_with_incorrect_password()
     {
         $user = factory(User::class)->create([
@@ -51,7 +63,12 @@ class LoginRegisterTest extends TestCase
         $this->assertGuest();
     }
 
-    /** @test */
+    /** @test
+     * 
+     * this method tests that user cannot view login form when authenticated
+     * 
+     * @return void
+     */
     public function test_user_cannot_view_a_login_form_when_authenticated()
     {
         $user = factory(User::class)->make();
@@ -59,7 +76,11 @@ class LoginRegisterTest extends TestCase
         $response->assertRedirect('/home');
     }
 
-    /** @test */
+    /** @test 
+     * this method tests that authenticated user is taken to the home page 
+     * 
+     * @return void
+    */
     public function authenticated_user_can_go_to_home()
     {
         //Given we have an authenticated user
@@ -74,7 +95,12 @@ class LoginRegisterTest extends TestCase
         $this->assertEquals(200, $response->status());
     }
 
-    /** @test */
+    /** @test 
+     * 
+     * this method tests that unauthenticated user cannot go to home page (redirected to login)
+     * 
+     * @return void
+    */
     public function unauthenticated_user_returned_to_login()
     {
 
