@@ -39,7 +39,6 @@ class HomeController extends Controller
      */
     public function getDate($array)
     {
-        // $dates;
         foreach ($array as $key => $arr) {
             $dates[$key] = $arr->time_posted;
         };
@@ -61,6 +60,13 @@ class HomeController extends Controller
     *   Method "getFollowingCount" gets the following count
     *   Method "show" show tweets with image
     */
+
+    /**
+    *   For editing bio
+    *
+    *@param Illuminate\Http\Request $request
+    *@return Illuminate\Http\Response
+    */
     public function edit(Request $request)
     {
         users::where('id', Auth::user()->id)
@@ -68,7 +74,11 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
-
+    /**
+    *   For returning tweets
+    *
+    *@return Illuminate\Http\Response
+    */
     public function index()
     {
         $user = Auth::user()->id;
@@ -79,6 +89,13 @@ class HomeController extends Controller
 
         return view('home', ['tweets' => $tweets])->with('listings', $users->listings);
     }
+
+    /**
+    *   For adding images
+    *
+    *@param \Illuminate\Http\Request $request
+    *@return Illuminate\Http\Response
+    */
 
     public function addImage(Request $request)
     {
@@ -91,11 +108,25 @@ class HomeController extends Controller
         return redirect('/home');
     }
 
+    /**
+    *   For gettting the user image
+    *
+    *@param \Illuminate\Http\string $filename
+    *@return Illuminate\Http\Response
+    */
+
     public function getUserImage($filename)
     {
         $file = Storage::disk('public')->get($filename);
         return new Response($file, 200);
     }
+
+    /**
+    *   For creating new tweets
+    *
+    *@param \Illuminate\Http\Request $request
+    *@return Illuminate\Http\Response
+    */
 
     public function create(Request $request)
     {
@@ -112,6 +143,13 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    /**
+    *   For deleting tweets
+    *
+    *@param \Illuminate\Http\int $id
+    *@return Illuminate\Http\Response
+    */
+
     public function delete($id)
     {
         $tweet = Tweets::find($id);
@@ -119,6 +157,13 @@ class HomeController extends Controller
 
         return redirect()->back()->with('success', 'Tweet Deleted');
     }
+
+    /**
+    *   For deleting photos
+    *
+    *@param \Illuminate\Http\int $id
+    *@return Illuminate\Http\Response
+    */
 
     public function deletePhoto($id)
     {
@@ -133,6 +178,11 @@ class HomeController extends Controller
         return redirect()->back()->with('success', 'Tweet Deleted');
     }
 
+    /**
+    *   For getting the feed
+    *
+    *@return Illuminate\Http\Response
+    */
     public function feed()
     {
         $user = Auth::user()->id;
@@ -149,6 +199,12 @@ class HomeController extends Controller
 
         return view('feed', ['tweets' => $tweets, 'f_id' => $f_id, 'names' => $names]);
     }
+
+    /**
+    *   For getting the list of users followers
+    *
+    *@return Illuminate\Http\Response
+    */
 
     public static function getFollowingList()
     {
@@ -171,6 +227,11 @@ class HomeController extends Controller
       return $followingArray;
     }
 
+    /**
+    *   For getting the list of users the current user is following
+    *
+    *@return Illuminate\Http\Response
+    */
 
     public static function getFollowersList()
     {
@@ -193,6 +254,12 @@ class HomeController extends Controller
       return $followersArray;
     }
 
+    /**
+    *   For getting the amount of people following the user
+    *
+    *@return Illuminate\Http\Response
+    */
+
     public static function getFollowersCount()
     {
       $user = Auth::user()->id;
@@ -201,6 +268,12 @@ class HomeController extends Controller
       return sizeof($f_id);
     }
 
+    /**
+    *   For getting the amount of people the current user is following
+    *
+    *@return Illuminate\Http\Response
+    */
+
     public static function getFollowingCount()
     {
       $user = Auth::user()->id;
@@ -208,6 +281,13 @@ class HomeController extends Controller
 
       return sizeof($f_id);
     }
+
+    /**
+    *   For displaying tweets with an image
+    *
+    *@param \Illuminate\Http\int $id
+    *@return Illuminate\Http\Response
+    */
 
     public function show($id)
     {

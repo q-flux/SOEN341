@@ -30,13 +30,4 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app'
-    //$('.like').on('click', function(event) {
-      //  event.preventDefault();
-      //  tweetId = event.target.parentNode.parentNode.dataset['tweets_id'];
-
-      //  $.ajax({
-      //      method: 'Tweet',
-      //      url: urlLike,
-        //    data: {tweetId: tweets_id, _token: token}
-      //  })
 });

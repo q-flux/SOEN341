@@ -11,7 +11,13 @@ use App\Listing;
 
 class OtherUserController extends Controller
 {
-    // This method returns the profile for other user
+  /**
+    *This method returns the profile for other user
+    *   For adding images
+    *
+    *@param \Illuminate\Http\int $id
+    *@return Illuminate\Http\Response
+    */
     public function searchOther($id)
     {
         $tweets = Tweets::where("user_id", $id)->get();
