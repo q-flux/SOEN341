@@ -13,11 +13,6 @@ class LikeController extends Controller
 {
   /** This method likes the tweet if the current user hasn't liked the tweet before
   *   If the user already liked the tweet, it unlikes the tweet
-  *
-  *@param \Illuminate\Http\int $id
-  *@return Illuminate\Http\Response
-  */
-  *
   */
     public function LikeTweet($id)
     {
@@ -32,7 +27,7 @@ class LikeController extends Controller
               ]);
             return redirect()->back();
       }
-
+      
         else
         {
             Like::create([
