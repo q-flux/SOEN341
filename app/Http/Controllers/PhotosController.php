@@ -23,6 +23,9 @@ class PhotosController extends Controller
 	*Create a new filename
 	*Upload the image
 	*Store tweets with photo
+	*
+	*@param \Illuminate\Http\Request $request
+	*@return Illuminate\Http\Response
 	*/
 
 	public function store(Request $request)

@@ -10,6 +10,10 @@ class SearchController extends Controller
 {
   /** The "Search" method takes an ajax request as a keyword and searches for a matching user
   *   If there is a similar user it displays a dropdown of all similar users
+  *
+  *@param \Illuminate\Http\Request $request
+  *@return Illuminate\Http\Response
+  */
   */
     public function search(Request $request)
     {
@@ -19,7 +23,7 @@ class SearchController extends Controller
             if (!empty($request->data))
              {
                 $users = User::where('name', 'LIKE', '%' . $request->data . "%")->get();
-                
+
                 if ($users) {
                     foreach ($users as $key => $user)
                      {

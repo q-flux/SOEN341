@@ -13,7 +13,7 @@ class FollowController extends Controller
     /**
      * Follows another user
      * $id will be used in the follow function as the ID of the user to follow
-     * @param  int
+     * @param  int $id
      * @return void
      */
     public function Follow($id)
@@ -24,7 +24,7 @@ class FollowController extends Controller
             Follow::where('follow_id', $id)->where('user_id', Auth::user()->id)->delete();
             return redirect()->back();
         }
-        
+
         else
         {
             Follow::create([
