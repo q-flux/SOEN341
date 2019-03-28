@@ -17,11 +17,11 @@ class LikeTest extends TestCase
 
 
 
-    /** @test
-     *
+    /** @test 
+     * 
      * This method test that an authorized user can like a tweet.
      * Namely, like item count in DB should be 1
-     *
+     * 
      * @return void
     */
     public function authenticated_user_can_get_like()
@@ -40,11 +40,11 @@ class LikeTest extends TestCase
         $this->assertEquals(302, $response->status());
     }
 
-    /** @test
-     *
+    /** @test 
+     * 
      * This method test that if you liked then disliked the same tweet, the liked item should be deleted from data base.
      * Namely, number of like item count should be 0
-     *
+     * 
      * @return void
     */
     public function authenticated_user_can_dislike_if_liked()
@@ -71,7 +71,7 @@ class LikeTest extends TestCase
         $this->assertEquals(302, $response->status());
     }
 
-    /** @test
+    /** @test 
       * This method tests that unauthorized user cannot like a tweet
       * @return void
      */
