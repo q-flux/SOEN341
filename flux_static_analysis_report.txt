@@ -1,0 +1,335 @@
+C:\xampp\htdocs\SOEN 341\SOEN341>php artisan code:analyse
+  1/38 [>---------------------------]   2%
+  3/38 [==>-------------------------]   7%
+  4/38 [==>-------------------------]  10%
+  5/38 [===>------------------------]  13%
+  6/38 [====>-----------------------]  15%
+ 10/38 [=======>--------------------]  26%
+ 11/38 [========>-------------------]  28%
+ 13/38 [=========>------------------]  34%
+ 17/38 [============>---------------]  44%
+ 18/38 [=============>--------------]  47%
+ 30/38 [======================>-----]  78%
+ 34/38 [=========================>--]  89%
+ 36/38 [==========================>-]  94%
+
+
+ ------ ---------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\FollowController.php
+ ------ ---------------------------------------------------------------------------------------------------------------
+  19     PHPDoc tag @param has invalid value (int): Unexpected token "\n     *", expected TOKEN_VARIABLE at offset 129
+  25     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+  34     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+ ------ ---------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\HomeController.php
+ ------ -----------------------------------------------------------------------------------------------------------------
+  10     Class DateTime referenced with incorrect case: Datetime.
+  31     Access to an undefined property App\Http\Controllers\HomeController::$param.
+  46     Method App\Http\Controllers\HomeController::getDate() should return Illuminate\Contracts\Support\Renderable but
+         returns array<int|string, mixed>.
+  46     Variable $dates might not be defined.
+  89     Parameter #1 $path of static method Illuminate\Filesystem\Filesystem::get() expects string,
+         (array<Illuminate\Http\UploadedFile>)|Illuminate\Http\UploadedFile given.
+ ------ -----------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\ListingsController.php
+ ------ --------------------------------------------------------------------------------------------------------------
+  31     Method App\Http\Controllers\ListingsController::create() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  45     Cannot access property $name on void.
+  46     Cannot access property $website on void.
+  47     Cannot access property $email on void.
+  48     Cannot access property $phone on void.
+  49     Cannot access property $address on void.
+  50     Cannot access property $bio on void.
+  51     Cannot access property $user_id on void.
+  53     Cannot call method save() on void.
+  55     Method App\Http\Controllers\ListingsController::store() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  78     Method App\Http\Controllers\ListingsController::edit() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  101    Method App\Http\Controllers\ListingsController::update() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  114    Method App\Http\Controllers\ListingsController::destroy() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+ ------ --------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------
+  Line   app\Http\Controllers\PhotosController.php
+ ------ -----------------------------------------------
+  47     Cannot access property $user_id on void.
+  48     Cannot access property $tweet_text on void.
+  49     Cannot access property $photo on void.
+  50     Cannot call method save() on void.
+  53     Cannot access property $user_id on void.
+  54     Cannot access property $tweet_text on void.
+  55     Cannot access property $id on void.
+  55     Cannot access property $photo_id on void.
+  56     Cannot access property $like_cnt on void.
+  57     Cannot access property $reply_cnt on void.
+  58     Cannot access property $photo on void.
+  60     Cannot access property $published_at on void.
+  61     Cannot call method save() on void.
+ ------ -----------------------------------------------
+
+ ------ -------------------------------------------
+  Line   app\Http\Controllers\SearchController.php
+ ------ -------------------------------------------
+  23     If condition is always true.
+ ------ -------------------------------------------
+
+ [ERROR] Found 35 errors
+
+
+ 38/38 [============================] 100%
+
+C:\xampp\htdocs\SOEN 341\SOEN341>php artisan code:analyse --level=max
+ 10/38 [=======>--------------------]  26%
+ 11/38 [========>-------------------]  28%
+ 15/38 [===========>----------------]  39%
+ 30/38 [======================>-----]  78%
+
+
+ ------ ---------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\FollowController.php
+ ------ ---------------------------------------------------------------------------------------------------------------
+  19     PHPDoc tag @param has invalid value (int): Unexpected token "\n     *", expected TOKEN_VARIABLE at offset 129
+  21     Cannot access property $id on App\User|null.
+  24     Cannot access property $id on App\User|null.
+  25     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+  31     Cannot access property $id on App\User|null.
+  34     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+ ------ ---------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\HomeController.php
+ ------ -----------------------------------------------------------------------------------------------------------------
+  10     Class DateTime referenced with incorrect case: Datetime.
+  31     Access to an undefined property App\Http\Controllers\HomeController::$param.
+  46     Method App\Http\Controllers\HomeController::getDate() should return Illuminate\Contracts\Support\Renderable but
+         returns array<int|string, mixed>.
+  46     Variable $dates might not be defined.
+  66     Cannot access property $id on App\User|null.
+  74     Cannot access property $id on App\User|null.
+  77     Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  77     Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  80     Cannot access property $listings on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\User)>)|static(App\User)|null.
+  86     Cannot access property $id on App\User|null.
+  86     Cannot access property $name on App\User|null.
+  89     Parameter #1 $path of static method Illuminate\Filesystem\Filesystem::get() expects string,
+         (array<Illuminate\Http\UploadedFile>)|Illuminate\Http\UploadedFile given.
+  105    Cannot access property $id on App\User|null.
+  118    Cannot call method delete() on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Tweets)>)|static(App\Tweets)|null.
+  126    Cannot access property $photo_id on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Tweets)>)|static(App\Tweets)|null.
+  128    Cannot access property $photo on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Photo)>)|static(App\Photo)|null.
+  130    Cannot call method delete() on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Photo)>)|static(App\Photo)|null.
+  132    Cannot call method delete() on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Tweets)>)|static(App\Tweets)|null.
+  138    Cannot access property $id on App\User|null.
+  139    Cannot access property $id on App\User|null.
+  155    Cannot access property $id on App\User|null.
+  156    Cannot access property $id on App\User|null.
+  177    Cannot access property $id on App\User|null.
+  178    Cannot access property $id on App\User|null.
+  198    Cannot access property $id on App\User|null.
+  199    Cannot access property $id on App\User|null.
+  206    Cannot access property $id on App\User|null.
+  207    Cannot access property $id on App\User|null.
+  214    Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  214    Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  217    Cannot access property $photos on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\User)>)|static(App\User)|null.
+ ------ -----------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------
+  Line   app\Http\Controllers\LikeController.php
+ ------ ----------------------------------------------
+  19     Cannot access property $id on App\User|null.
+  34     Cannot access property $id on App\User|null.
+ ------ ----------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\ListingsController.php
+ ------ --------------------------------------------------------------------------------------------------------------
+  31     Method App\Http\Controllers\ListingsController::create() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  45     Cannot access property $name on void.
+  46     Cannot access property $website on void.
+  47     Cannot access property $email on void.
+  48     Cannot access property $phone on void.
+  49     Cannot access property $address on void.
+  50     Cannot access property $bio on void.
+  51     Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  51     Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  51     Cannot access property $user_id on void.
+  53     Cannot call method save() on void.
+  55     Method App\Http\Controllers\ListingsController::store() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  78     Method App\Http\Controllers\ListingsController::edit() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  92     Cannot access property $name on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  93     Cannot access property $website on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  94     Cannot access property $email on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  95     Cannot access property $phone on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  96     Cannot access property $address on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  97     Cannot access property $bio on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  98     Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  98     Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  98     Cannot access property $user_id on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  99     Cannot call method save() on
+         (Illuminate\Database\Eloquent\Collection&iterable<static(App\Listing)>)|static(App\Listing)|null.
+  101    Method App\Http\Controllers\ListingsController::update() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  114    Method App\Http\Controllers\ListingsController::destroy() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+ ------ --------------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------
+  Line   app\Http\Controllers\OtherUserController.php
+ ------ ----------------------------------------------
+  18     Cannot access property $name on mixed.
+  20     Cannot access property $id on App\User|null.
+  21     Cannot access property $biography on mixed.
+  26     Cannot access property $id on App\User|null.
+ ------ ----------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\PhotosController.php
+ ------ --------------------------------------------------------------------------------------------------------
+  36     Cannot call method getClientOriginalName() on
+         array<Illuminate\Http\UploadedFile>|Illuminate\Http\UploadedFile|null.
+  38     Parameter #1 $path of function pathinfo expects string, string|null given.
+  40     Cannot call method getClientOriginalExtension() on
+         array<Illuminate\Http\UploadedFile>|Illuminate\Http\UploadedFile|null.
+  44     Cannot call method storeAs() on array<Illuminate\Http\UploadedFile>|Illuminate\Http\UploadedFile|null.
+  47     Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  47     Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  47     Cannot access property $user_id on void.
+  48     Cannot access property $tweet_text on void.
+  49     Cannot access property $photo on void.
+  50     Cannot call method save() on void.
+  53     Call to an undefined method Illuminate\Contracts\Auth\Factory|Illuminate\Contracts\Auth\Guard::user().
+  53     Cannot access property $id on Illuminate\Contracts\Auth\Authenticatable|null.
+  53     Cannot access property $user_id on void.
+  54     Cannot access property $tweet_text on void.
+  55     Cannot access property $id on void.
+  55     Cannot access property $photo_id on void.
+  56     Cannot access property $like_cnt on void.
+  57     Cannot access property $reply_cnt on void.
+  58     Cannot access property $photo on void.
+  60     Cannot access property $published_at on void.
+  61     Cannot call method save() on void.
+ ------ --------------------------------------------------------------------------------------------------------
+
+ ------ ----------------------------------------------
+  Line   app\Http\Controllers\SearchController.php
+ ------ ----------------------------------------------
+  23     If condition is always true.
+  26     Cannot access property $id on App\User|null.
+ ------ ----------------------------------------------
+
+ [ERROR] Found 91 errors
+
+
+ 38/38 [============================] 100%
+
+C:\xampp\htdocs\SOEN 341\SOEN341>php artisan code:analyse
+  6/38 [====>-----------------------]  15%
+ 11/38 [========>-------------------]  28%
+ 17/38 [============>---------------]  44%
+
+
+ ------ ---------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\FollowController.php
+ ------ ---------------------------------------------------------------------------------------------------------------
+  19     PHPDoc tag @param has invalid value (int): Unexpected token "\n     *", expected TOKEN_VARIABLE at offset 129
+  25     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+  34     Method App\Http\Controllers\FollowController::Follow() with return type void returns
+         Illuminate\Http\RedirectResponse but should not return anything.
+ ------ ---------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\HomeController.php
+ ------ -----------------------------------------------------------------------------------------------------------------
+  10     Class DateTime referenced with incorrect case: Datetime.
+  31     Access to an undefined property App\Http\Controllers\HomeController::$param.
+  46     Method App\Http\Controllers\HomeController::getDate() should return Illuminate\Contracts\Support\Renderable but
+         returns array<int|string, mixed>.
+  46     Variable $dates might not be defined.
+  89     Parameter #1 $path of static method Illuminate\Filesystem\Filesystem::get() expects string,
+         (array<Illuminate\Http\UploadedFile>)|Illuminate\Http\UploadedFile given.
+ ------ -----------------------------------------------------------------------------------------------------------------
+
+ ------ --------------------------------------------------------------------------------------------------------------
+  Line   app\Http\Controllers\ListingsController.php
+ ------ --------------------------------------------------------------------------------------------------------------
+  31     Method App\Http\Controllers\ListingsController::create() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  45     Cannot access property $name on void.
+  46     Cannot access property $website on void.
+  47     Cannot access property $email on void.
+  48     Cannot access property $phone on void.
+  49     Cannot access property $address on void.
+  50     Cannot access property $bio on void.
+  51     Cannot access property $user_id on void.
+  53     Cannot call method save() on void.
+  55     Method App\Http\Controllers\ListingsController::store() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  78     Method App\Http\Controllers\ListingsController::edit() should return Illuminate\Http\Response but returns
+         Illuminate\View\View.
+  101    Method App\Http\Controllers\ListingsController::update() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+  114    Method App\Http\Controllers\ListingsController::destroy() should return Illuminate\Http\Response but returns
+         Illuminate\Http\RedirectResponse.
+ ------ --------------------------------------------------------------------------------------------------------------
+
+ ------ -----------------------------------------------
+  Line   app\Http\Controllers\PhotosController.php
+ ------ -----------------------------------------------
+  47     Cannot access property $user_id on void.
+  48     Cannot access property $tweet_text on void.
+  49     Cannot access property $photo on void.
+  50     Cannot call method save() on void.
+  53     Cannot access property $user_id on void.
+  54     Cannot access property $tweet_text on void.
+  55     Cannot access property $id on void.
+  55     Cannot access property $photo_id on void.
+  56     Cannot access property $like_cnt on void.
+  57     Cannot access property $reply_cnt on void.
+  58     Cannot access property $photo on void.
+  60     Cannot access property $published_at on void.
+  61     Cannot call method save() on void.
+ ------ -----------------------------------------------
+
+ ------ -------------------------------------------
+  Line   app\Http\Controllers\SearchController.php
+ ------ -------------------------------------------
+  23     If condition is always true.
+ ------ -------------------------------------------
+
+ [ERROR] Found 35 errors
+
+
+ 38/38 [============================] 100%
+
+C:\xampp\htdocs\SOEN 341\SOEN341>
