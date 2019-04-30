@@ -11,9 +11,10 @@ Twitter is one of the world's most popular social media platform. Today, many bu
 
 *  Post a tweet
 *  Like a tweet
-*  Receive notifications
-*  Reply to a tweet
+*  Update and edit profile
+*  View feed
 *  Follow a user
+*  Search a user
 
 # Technology
 
